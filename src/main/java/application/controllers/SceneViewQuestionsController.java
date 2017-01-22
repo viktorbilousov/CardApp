@@ -25,12 +25,12 @@ public class SceneViewQuestionsController implements Controller{
     @FXML
     private TableColumn<QuestionProperty, String> questionColumn;
     @FXML
-    private TableColumn<QuestionProperty, String> antwordColumn;
+    private TableColumn<QuestionProperty, String> answerColumn;
 
     @FXML
     public void initialize() {
         questionColumn.setCellValueFactory(data -> data.getValue().questionPropertyProperty());
-        antwordColumn.setCellValueFactory(data -> data.getValue().answerPropertyProperty());
+        answerColumn.setCellValueFactory(data -> data.getValue().answerPropertyProperty());
     }
 
 
@@ -39,7 +39,11 @@ public class SceneViewQuestionsController implements Controller{
         this.mainApp = (MainApp) mainApp;
     }
 
+
     public void updateElementsData() {
+        if(questions == null)
+            return;
+
         questionProperties.clear();
         for(Question question : questions){
             questionProperties.add(new QuestionProperty(question));
@@ -49,6 +53,9 @@ public class SceneViewQuestionsController implements Controller{
     }
 
     public void setInputData(Object data) {
+        if(data == null)
+            return;
+
         if(!(data instanceof ArrayList)){
             System.out.println("error input data in " + getClass().getSimpleName());
             return;
@@ -56,9 +63,18 @@ public class SceneViewQuestionsController implements Controller{
         questions = (ArrayList<Question>)data;
     }
 
+
+
     @FXML
     public void newButton(){
-        System.out.println("new event");
+        try {
+            System.out.println("new event");
+            mainApp.getAddQuestionStageModel().setDataToController(this.questions);
+            mainApp.getAddQuestionStageModel().updateData();
+            mainApp.showAddQuestionStage();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
     @FXML
     public void editButton(){
@@ -66,7 +82,9 @@ public class SceneViewQuestionsController implements Controller{
     }
 
     @FXML void deleteButton(){
-        System.out.println("delete event");
+        int index =  questionTableView.getSelectionModel().getFocusedIndex();
+        questions.remove(index);
+        this.updateElementsData();
     }
 
     @FXML void backButton(){

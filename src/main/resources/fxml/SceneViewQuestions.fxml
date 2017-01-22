@@ -10,7 +10,7 @@
         <TableView fx:id="questionTableView" editable="true" layoutX="17.0" layoutY="21.0" prefHeight="320.0" prefWidth="575.0">
             <columns>
                 <TableColumn fx:id="questionColumn" prefWidth="265.0" text="C1" />
-                <TableColumn fx:id="antwordColumn" prefWidth="305.0" text="C2" />
+                <TableColumn fx:id="answerColumn" prefWidth="305.0" text="C2" />
             </columns>
         </TableView>
         <Button layoutX="331.0" layoutY="355.0" mnemonicParsing="false" onAction="#newButton" prefWidth="51.0" text="New" />

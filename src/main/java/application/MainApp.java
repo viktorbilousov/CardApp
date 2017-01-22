@@ -1,14 +1,15 @@
 package application;
 
+import application.model.SceneModel;
+import application.model.StageModel;
 import cardSystem.CardSystem;
 import cardSystem.Question;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * Created by BellPC on 20.01.2017.
@@ -18,59 +19,85 @@ public class MainApp extends Application {
     private CardSystem cardSystem;
 
     private Stage primaryStage = null;
-    private StageModel stageRoot;
-    private SceneModel viewThemes;
-    private SceneModel viewQuestion;
+    private StageModel rootStageModel;
+    private StageModel addQuestionStageModel;
+
+    private SceneModel viewThemesModel;
+    private SceneModel viewQuestionModel;
 
     public MainApp(CardSystem cardSystem) {
         this.cardSystem = cardSystem;
     }
+
+    //region getters
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public StageModel getAddQuestionStageModel() {
+        return addQuestionStageModel;
+    }
+
+    public SceneModel getViewThemesModel() {
+        return viewThemesModel;
+    }
+
+    public SceneModel getViewQuestionModel() {
+        return viewQuestionModel;
+    }
+
+    //endregion
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Card System");
         initialize();
-        stageRoot.show();
-
-        cardSystem.getThemeList().get(0).addQuestion(new Question("new question", "new answer"));
-        cardSystem.getThemeList().get(0).addQuestion(new Question("new question", "new answer"));
-        cardSystem.getThemeList().get(0).addQuestion(new Question("new question", "new answer"));
-        cardSystem.getThemeList().get(0).addQuestion(new Question("new question", "new answer"));
-        cardSystem.displayAll();
-
-        viewQuestion.updateData();
- //       viewQuestion.show();
-        viewThemes.show();
+        rootStageModel.show();
+  //      viewQuestionModel.updateData();
+ //       viewQuestionModel.show();
+        viewThemesModel.show();
     }
     private void initialize(){
-        stageRoot = new StageModel( primaryStage, "../fxml/StageRoot.fxml");
-        stageRoot.init();
+        rootStageModel = new StageModel( primaryStage, this ,"../fxml/StageRoot.fxml");
+        rootStageModel.init();
 
-        viewThemes = new SceneModel(this,  (BorderPane) stageRoot.getRootLayout(),"../fxml/SceneViewThemes.fxml" );
-        viewQuestion = new SceneModel(this,(BorderPane) stageRoot.getRootLayout(), "../fxml/SceneViewQuestions.fxml");
+        viewQuestionModel = new SceneModel((BorderPane) rootStageModel.getRootLayout(), this, "../fxml/SceneViewQuestions.fxml");
+        viewQuestionModel.init();
 
+        viewThemesModel = new SceneModel((BorderPane) rootStageModel.getRootLayout(), this ,"../fxml/SceneViewThemes.fxml");
+        viewThemesModel.setDataToController(cardSystem.getThemeList());
+        viewThemesModel.init();
 
-        viewQuestion.setDataToController(cardSystem.getThemeList().get(0).getQuestionsList());
-        viewQuestion.init();
-
-
-        viewThemes.setDataToController(cardSystem.getThemeList());
-        viewThemes.init();
+        initAddQuestionStage();
     }
 
+    private void initAddQuestionStage(){
+        Stage stage = new Stage();
+        stage.setTitle("New Question");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(primaryStage);
+        addQuestionStageModel = new StageModel(stage, this, "../fxml/StageAddQuestion.fxml" );
+        addQuestionStageModel.init();
+    }
+    public void showAddQuestionStage(){
+        addQuestionStageModel.show();
+    }
 
     public void showViewThemes(){
-        viewThemes.show();
+        viewThemesModel.show();
     }
     public void showViewQuestionOfTheme(int idTheme){
         ArrayList<Question> list = (ArrayList<Question>) cardSystem.getThemeList().get(idTheme).getQuestionsList();
 
-        viewQuestion.setDataToController(cardSystem.getThemeList()
+        viewQuestionModel.setDataToController(cardSystem.getThemeList()
                 .get(idTheme).getQuestionsList());
 
-        viewQuestion.updateData();
-        viewQuestion.show();
+        viewQuestionModel.updateData();
+        viewQuestionModel.show();
     }
+
+
+
 
 }

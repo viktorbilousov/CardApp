@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="157.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.StageAddQuestionController">
+   <children>
+      <Label layoutX="294.0" layoutY="46.0" text="Answer: " />
+      <Label layoutX="31.0" layoutY="46.0" text="Question: " />
+      <Button layoutX="179.0" layoutY="103.0" mnemonicParsing="false" onAction="#addButton" prefWidth="45.0" text="Add" />
+      <Button layoutX="372.0" layoutY="103.0" mnemonicParsing="false" onAction="#closeButton" text="Close" />
+      <TextField fx:id="questionField" layoutX="97.0" layoutY="42.0" />
+      <TextField fx:id="answerField" layoutX="350.0" layoutY="42.0" />
+   </children>
+</AnchorPane>

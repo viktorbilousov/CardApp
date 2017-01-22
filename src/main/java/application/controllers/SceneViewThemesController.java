@@ -42,12 +42,10 @@ public class SceneViewThemesController implements Controller {
     }
 
     public void updateElementsData() {
-       observableList.clear();
-
+        observableList.clear();
         for(Theme theme : themeArrayList){
             observableList.add(new ThemeProperty(theme));
         }
-
        themeTableView.setItems(observableList);
     }
     @FXML
@@ -56,10 +54,9 @@ public class SceneViewThemesController implements Controller {
     }
     @FXML
     public void editButton(){
+        // TODO: 23.01.2017 null select event!
         int index = themeTableView.getSelectionModel().getFocusedIndex();
-        System.out.println(index);
         mainApp.showViewQuestionOfTheme(index);
-        System.out.println("show themes event!");
     }
     @FXML void deleteButton(){
         System.out.println("delete event");

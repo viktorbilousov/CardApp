@@ -1,6 +1,8 @@
-package application;
+package application.model;
 
+import application.MainApp;
 import application.controllers.Controller;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,20 +13,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SceneModel  {
+public class SceneModel implements Model {
 
     private Controller controller;
     private BorderPane rootLayout;
     private AnchorPane thisLayout;
     private String pathToFXML;
     private Object dataToController;
-    private MainApp mainApp;
+    private Application mainApp;
 
 
-    public SceneModel(MainApp mainApp, BorderPane rootLayout, String pathToFXML) {
+    public SceneModel(BorderPane rootLayout, Application mainApp, String pathToFXML) {
         this.rootLayout = rootLayout;
         this.pathToFXML = pathToFXML;
         this.mainApp = mainApp;
+    }
+
+    public BorderPane getRootLayout() {
+        return rootLayout;
     }
 
     public void setDataToController(Object dataToController) {
@@ -35,13 +41,8 @@ public class SceneModel  {
             System.out.println("error: controller == null in " + getClass().getSimpleName());
             return;
         }
-
         controller.setInputData(dataToController);
         controller.updateElementsData();
-    }
-    @FXML
-    public void initialize(){
-        init();
     }
 
     public void init(){
@@ -52,6 +53,7 @@ public class SceneModel  {
             // Даём контроллеру доступ к главному прилодению.
             controller = loader.getController();
             controller.setInputData(dataToController);
+            //todo не перенести ли setInputData в setDataToController ?
             controller.setMainApp(mainApp);
             controller.updateElementsData();
 
@@ -66,5 +68,10 @@ public class SceneModel  {
         rootLayout.setCenter(thisLayout);
     }
 
+
+    @Override
+    public void close() {
+        thisLayout.setVisible(false);
+    }
 }
 
