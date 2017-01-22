@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.SceneViewQuestionsController">
+    <children>
+        <TableView fx:id="questionTableView" editable="true" layoutX="17.0" layoutY="21.0" prefHeight="320.0" prefWidth="575.0">
+            <columns>
+                <TableColumn fx:id="questionColumn" prefWidth="265.0" text="C1" />
+                <TableColumn fx:id="antwordColumn" prefWidth="305.0" text="C2" />
+            </columns>
+        </TableView>
+        <Button layoutX="331.0" layoutY="355.0" mnemonicParsing="false" onAction="#newButton" prefWidth="51.0" text="New" />
+        <Button layoutX="411.0" layoutY="355.0" mnemonicParsing="false" onAction="#editButton" prefWidth="51.0" text="Edit" />
+        <Button layoutX="503.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteButton" text="Delete" />
+      <Button layoutX="233.0" layoutY="355.0" mnemonicParsing="false" onAction="#backButton" prefWidth="51.0" text="Back " />
+    </children>
+    <padding>
+        <Insets top="20.0" />
+    </padding>
+</AnchorPane>

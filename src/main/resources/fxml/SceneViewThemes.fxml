@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.SceneViewThemesController">
+    <children>
+        <Button layoutX="399.0" layoutY="343.0" mnemonicParsing="false" onAction="#editButton" prefWidth="51.0" text="Edit" />
+        <Button layoutX="308.0" layoutY="343.0" mnemonicParsing="false" onAction="#newButton" prefWidth="51.0" text="New" />
+        <Button layoutX="484.0" layoutY="343.0" mnemonicParsing="false" onAction="#deleteButton" text="Delete" />
+        <TableView fx:id="themeTableView" layoutX="35.0" layoutY="14.0" prefHeight="319.0" prefWidth="528.0">
+            <columns>
+                <TableColumn fx:id="c1" prefWidth="530.0" text="C1" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
