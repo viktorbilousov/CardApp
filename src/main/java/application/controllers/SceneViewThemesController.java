@@ -1,9 +1,9 @@
 package application.controllers;
 
-import application.MainApp;
 import application.cardSystemProperty.ThemeProperty;
+import application.model.Model;
+import application.model.sceneModel.ViewThemesSceneModel;
 import cardSystem.Theme;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ public class SceneViewThemesController implements Controller {
 
     private ObservableList<ThemeProperty> observableList = FXCollections.observableArrayList();
     private ArrayList<Theme> themeArrayList;
-    private MainApp mainApp;
+    private ViewThemesSceneModel myModel;
 
     @FXML
     TableView<ThemeProperty> themeTableView;
@@ -31,15 +31,21 @@ public class SceneViewThemesController implements Controller {
         themeArrayList = (ArrayList<Theme>)data;
     }
 
+    @Override
+    public ArrayList<Theme> getInputData() {
+        return themeArrayList;
+    }
+
     @FXML
     public void initialize() {
         c1.setCellValueFactory(cellData -> cellData.getValue().themeNameProperty());
     }
 
     @Override
-    public void setMainApp(Application mainApp) {
-        this.mainApp = (MainApp)mainApp;
+    public void setMyModel(Model model) {
+        this.myModel = (ViewThemesSceneModel) model;
     }
+
 
     public void updateElementsData() {
         observableList.clear();
@@ -50,16 +56,32 @@ public class SceneViewThemesController implements Controller {
     }
     @FXML
     public void newButton(){
-        System.out.println("new event");
+        myModel.showAddThemeStage();
     }
+
     @FXML
-    public void editButton(){
-        // TODO: 23.01.2017 null select event!
+    private void editButton(){
+        if(themeTableView.getSelectionModel().getSelectedItem() == null){
+            myModel.openErrorSelectWindow();
+            return;
+        }
+        int index  =  themeTableView.getSelectionModel().getSelectedIndex();
+        myModel.showEditTheme(themeArrayList.get(index));
+    }
+
+    @FXML
+    public void openButton(){
+        if(themeTableView.getSelectionModel().getSelectedItem() == null){
+            myModel.openErrorSelectWindow();
+            return;
+        }
         int index = themeTableView.getSelectionModel().getFocusedIndex();
-        mainApp.showViewQuestionOfTheme(index);
+        myModel.showQuestionScene(index);
     }
     @FXML void deleteButton(){
-        System.out.println("delete event");
+        int index =  themeTableView.getSelectionModel().getFocusedIndex();
+        this.themeArrayList.remove(index);
+        this.updateElementsData();
     }
 }
 

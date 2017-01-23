@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="157.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.StageAddThemeController">
+    <children>
+        <Label layoutX="152.0" layoutY="55.0" text="Thema :" />
+        <Button fx:id="leftButton" layoutX="179.0" layoutY="103.0" mnemonicParsing="false" onAction="#leftButton" prefWidth="45.0" text="Add" />
+        <Button layoutX="286.0" layoutY="103.0" mnemonicParsing="false" onAction="#closeButton" text="Close" />
+        <TextField fx:id="themeField" layoutX="234.0" layoutY="51.0" />
+      <Button layoutX="383.0" layoutY="103.0" mnemonicParsing="false" onAction="#settingButton" prefHeight="25.0" prefWidth="78.0" text="Setting ..." textAlignment="CENTER" wrapText="true" />
+    </children>
+</AnchorPane>

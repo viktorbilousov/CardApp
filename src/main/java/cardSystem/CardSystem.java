@@ -8,23 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardSystem {
-    private List<Theme> themeList = new ArrayList<Theme>();
-    private List<Question> universalQuestion = new ArrayList<Question>();
+    private ArrayList<Theme> themeList = new ArrayList<Theme>();
+    private ArrayList<Question> universalQuestion = new ArrayList<Question>();
 
   //region setters\getters
-    public List<Theme> getThemeList() {
+    public ArrayList<Theme> getThemeList() {
         return themeList;
     }
 
-    public void setThemeList(List<Theme> themeList) {
+    public void setThemeList(ArrayList<Theme> themeList) {
         this.themeList = themeList;
     }
 
-    public List<Question> getUniversalQuestion() {
+    public ArrayList<Question> getUniversalQuestion() {
         return universalQuestion;
     }
 
-    public void setUniversalQuestion(List<Question> universalQuestion) {
+    public void setUniversalQuestion(ArrayList<Question> universalQuestion) {
         this.universalQuestion = universalQuestion;
     }
     //endregion

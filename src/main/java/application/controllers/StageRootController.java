@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.MainApp;
+import application.model.Model;
 import cardSystem.Question;
 import cardSystem.Theme;
 import javafx.application.Application;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class StageRootController implements Controller {
 
-    @FXML
+    @Override
     public void initialize() {
 
     }
@@ -26,7 +27,12 @@ public class StageRootController implements Controller {
     }
 
     @Override
-    public void setMainApp(Application mainApp) {
+    public Object getInputData() {
+        return null;
+    }
+
+    @Override
+    public void setMyModel(Model model) {
 
     }
 }

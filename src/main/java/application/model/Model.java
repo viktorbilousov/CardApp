@@ -1,7 +1,7 @@
 package application.model;
 
 public interface Model {
-    void init();
+    void init(String pathToFXML);
     void setDataToController(Object data);
     void updateData();
     void show();

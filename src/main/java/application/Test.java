@@ -38,5 +38,10 @@ public class Test{
     public void setFamilie(String familie) {
         this.familie.set(familie);
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
 

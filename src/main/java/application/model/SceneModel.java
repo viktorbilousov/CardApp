@@ -15,47 +15,29 @@ import java.io.IOException;
 
 public class SceneModel implements Model {
 
-    private Controller controller;
-    private BorderPane rootLayout;
-    private AnchorPane thisLayout;
-    private String pathToFXML;
-    private Object dataToController;
-    private Application mainApp;
+    protected Controller controller;
+    protected BorderPane rootLayout;
+    protected AnchorPane thisLayout;
+    protected MainApp mainApp;
 
-
-    public SceneModel(BorderPane rootLayout, Application mainApp, String pathToFXML) {
+    public SceneModel(BorderPane rootLayout, MainApp mainApp, String pathToFXML) {
         this.rootLayout = rootLayout;
-        this.pathToFXML = pathToFXML;
         this.mainApp = mainApp;
+        init(pathToFXML);
     }
 
     public BorderPane getRootLayout() {
         return rootLayout;
     }
 
-    public void setDataToController(Object dataToController) {
-        this.dataToController = dataToController;
-    }
-    public void updateData(){
-        if(controller == null){
-            System.out.println("error: controller == null in " + getClass().getSimpleName());
-            return;
-        }
-        controller.setInputData(dataToController);
-        controller.updateElementsData();
-    }
-
-    public void init(){
+    public void init(String pathToFXML){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource(pathToFXML));
             thisLayout =  loader.load();
             // Даём контроллеру доступ к главному прилодению.
             controller = loader.getController();
-            controller.setInputData(dataToController);
-            //todo не перенести ли setInputData в setDataToController ?
-            controller.setMainApp(mainApp);
-            controller.updateElementsData();
+            controller.setMyModel(this);
 
         } catch (IOException e) {
             System.out.println(e);
@@ -64,11 +46,31 @@ public class SceneModel implements Model {
             System.out.println(e);
         }
     }
-    public void show(){
-        rootLayout.setCenter(thisLayout);
+
+    @Override
+    public void setDataToController(Object dataToController) {
+        if(controller == null){
+            System.out.println("error: controller == null in " + getClass().getSimpleName());
+            return;
+        }
+        controller.setInputData(dataToController);
+        controller.updateElementsData();
+    }
+    @Override
+    public void updateData(){
+        if(controller == null){
+            System.out.println("error: controller == null in " + getClass().getSimpleName());
+            return;
+        }
+        controller.updateElementsData();
     }
 
-
+    protected void preShowInit(){};
+    @Override
+    public void show(){
+        preShowInit();
+        rootLayout.setCenter(thisLayout);
+    }
     @Override
     public void close() {
         thisLayout.setVisible(false);

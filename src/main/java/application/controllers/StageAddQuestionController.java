@@ -1,67 +1,97 @@
 package application.controllers;
 
-import application.MainApp;
+import application.model.Model;
+import application.model.stageModels.AddQuestionStageModel;
 import cardSystem.Question;
-import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class StageAddQuestionController implements Controller {
 
     private ArrayList<Question> listToAdding;
-    private MainApp mainApp;
-    private Stage addQuestionStage;
+    private Question editQuestion;
+    private AddQuestionStageModel myModel;
     private boolean checkValidBothValue = true;
+    private boolean isEditMode = false;
 
     @FXML
     private TextField questionField;
     @FXML
     private TextField answerField;
+    @FXML
+    private Button leftButton;
+    @FXML
+    private Button rightButton;
+
+    public void setCheckValidBothValue(boolean checkValidBothValue) {
+        this.checkValidBothValue = checkValidBothValue;
+    }
+
+    public void setEditMode(boolean editMode) {
+        isEditMode = editMode;
+        if (isEditMode)  leftButton.setText("Edit");
+        else leftButton.setText("Add");
+    }
 
     @FXML
     public void initialize() {
+
+        clearFields();
     }
 
     @Override
-    public void updateElementsData() {
-        clearFields();
-    }
+    public void updateElementsData() {}
 
     @Override
     public void setInputData(Object data) {
         if(data == null)
             return;
 
-        if(!(data instanceof ArrayList)){
-            System.out.println("error input data in " + getClass().getSimpleName());
+        if(data instanceof ArrayList){
+            listToAdding = (ArrayList<Question>) data;
             return;
+        }else if(data instanceof Question){
+            editQuestion = (Question)data;
+            return;
+        }else {
+            System.out.println("error input data in " + getClass().getSimpleName());
         }
-        listToAdding = (ArrayList<Question>) data;
+        return;
     }
 
     @Override
-    public void setMainApp(Application mainApp) {
-        this.mainApp = (MainApp) mainApp;
-        addQuestionStage = ((MainApp) mainApp).getAddQuestionStageModel().getPrimaryStage();
+    public ArrayList<Question> getInputData() {
+        return listToAdding;
     }
 
+    @Override
+    public void setMyModel(Model model) {
+        this.myModel = (AddQuestionStageModel) model;
+    }
 
     @FXML
     private void addButton(){
         String question = questionField.getText();
         String answer = answerField.getText();
-        if(isValidValues(question, answer)){
-            this.listToAdding.add(new Question(question,answer));
+        if(isValidValues(question, answer)) {
+            if (isEditMode) {
+                editQuestion.setQuestion(question);
+                editQuestion.setAnswer(answer);
+            } else {
+                this.listToAdding.add(new Question(question, answer));
+                clearFields();
+            }
+            myModel.updateDataInAddedModel();
+        }else{
+            System.out.println("error input fields data in " + getClass().getSimpleName());
         }
-        mainApp.getViewQuestionModel().updateData();
-        clearFields();
     }
     @FXML
     private void closeButton(){
-        addQuestionStage.close();
+        myModel.close();
     }
 
     private boolean isValidValues(String question, String answer){
@@ -73,10 +103,17 @@ public class StageAddQuestionController implements Controller {
         return true;
     }
 
-    private void clearFields(){
+    public void clearFields(){
         questionField.clear();
         answerField.clear();
     }
+    public void setDefFieldsValue(String question, String answer){
+        if(!isValidValues(question, answer)){
+            System.out.println("error input fields value in " + getClass().getSimpleName());
+            return;
+        }
+        questionField.setText(question);
+        answerField.setText(answer);
 
-
+    }
 }

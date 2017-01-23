@@ -14,24 +14,18 @@ import java.net.URL;
 
 public class StageModel implements Model {
 
-    private Controller controller;
-    private Pane rootLayout;
-    private Stage primaryStage;
-    private String pathToFXML;
-    private Object dataToController;
-    private Application mainApp;
+    protected Controller controller;
+    protected Pane rootLayout;
+    protected Stage primaryStage;
+    protected MainApp mainApp;
 
-    public StageModel(Stage primaryStage, Application mainApp, String pathToFXML) {
+    public StageModel(Stage primaryStage, MainApp mainApp, String pathToFXML) {
         this.primaryStage = primaryStage;
-        this.pathToFXML = pathToFXML;
         this.mainApp = mainApp;
+        init(pathToFXML);
     }
 
-    public void setDataToController(Object dataToController) {
-        this.dataToController = dataToController;
-    }
-
-    public void init(){
+    public void init(String pathToFXML){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource(pathToFXML));
@@ -40,16 +34,17 @@ public class StageModel implements Model {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
 
-            // Даём контроллеру доступ к главному прилодению.
             controller = loader.getController();
-            controller.setInputData(dataToController);
-            controller.setMainApp(mainApp);
-            controller.updateElementsData();
+            controller.setMyModel(this);
 
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();
         }catch (Exception e){
+            if(controller == null){
+                System.out.println("error: controller == null in " + getClass().getSimpleName());
+                return;
+            }
             System.out.println(e);
         }
     }
@@ -62,23 +57,35 @@ public class StageModel implements Model {
         return primaryStage;
     }
 
+
+    @Override
+    public void setDataToController(Object dataToController) {
+        if(controller == null){
+            System.out.println("error: controller == null in " + getClass().getSimpleName());
+            return;
+        }
+        controller.setInputData(dataToController);
+    }
+    protected void preShowInit(){};
+    @Override
     public void show(){
+        preShowInit();
         primaryStage.show();
     }
     public void showAndWait(){
         primaryStage.showAndWait();
     }
+    @Override
     public void close(){
         primaryStage.close();
     }
-
     @Override
     public void updateData() {
         if(controller == null){
             System.out.println("error: controller == null in " + getClass().getSimpleName());
             return;
         }
-        controller.setInputData(dataToController);
         controller.updateElementsData();
     }
+
 }

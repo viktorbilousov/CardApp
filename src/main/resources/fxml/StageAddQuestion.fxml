@@ -9,8 +9,8 @@
    <children>
       <Label layoutX="294.0" layoutY="46.0" text="Answer: " />
       <Label layoutX="31.0" layoutY="46.0" text="Question: " />
-      <Button layoutX="179.0" layoutY="103.0" mnemonicParsing="false" onAction="#addButton" prefWidth="45.0" text="Add" />
-      <Button layoutX="372.0" layoutY="103.0" mnemonicParsing="false" onAction="#closeButton" text="Close" />
+      <Button fx:id="leftButton" layoutX="179.0" layoutY="103.0" mnemonicParsing="false" onAction="#addButton" prefWidth="45.0" text="Add" />
+      <Button fx:id="rightButton" layoutX="372.0" layoutY="103.0" mnemonicParsing="false" onAction="#closeButton" text="Close" />
       <TextField fx:id="questionField" layoutX="97.0" layoutY="42.0" />
       <TextField fx:id="answerField" layoutX="350.0" layoutY="42.0" />
    </children>

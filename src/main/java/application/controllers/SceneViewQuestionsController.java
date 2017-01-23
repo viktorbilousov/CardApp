@@ -1,10 +1,11 @@
 package application.controllers;
 
 
-import application.MainApp;
 import application.cardSystemProperty.QuestionProperty;
+import application.model.Model;
+import application.model.SceneModel;
+import application.model.sceneModel.ViewQuestionSceneModel;
 import cardSystem.Question;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,8 +18,8 @@ public class SceneViewQuestionsController implements Controller{
 
 
     private ArrayList<Question> questions;
-    private MainApp mainApp;
     private ObservableList<QuestionProperty> questionProperties = FXCollections.observableArrayList();
+    private ViewQuestionSceneModel myModel;
 
     @FXML
     private TableView<QuestionProperty> questionTableView;
@@ -34,12 +35,6 @@ public class SceneViewQuestionsController implements Controller{
     }
 
 
-    @Override
-    public void setMainApp(Application mainApp) {
-        this.mainApp = (MainApp) mainApp;
-    }
-
-
     public void updateElementsData() {
         if(questions == null)
             return;
@@ -52,6 +47,7 @@ public class SceneViewQuestionsController implements Controller{
 
     }
 
+    @Override
     public void setInputData(Object data) {
         if(data == null)
             return;
@@ -63,22 +59,28 @@ public class SceneViewQuestionsController implements Controller{
         questions = (ArrayList<Question>)data;
     }
 
+    @Override
+    public ArrayList<Question> getInputData() {
+        return questions;
+    }
 
+    @Override
+    public void setMyModel(Model model) {
+        this.myModel = (ViewQuestionSceneModel) model;
+    }
 
     @FXML
     public void newButton(){
-        try {
-            System.out.println("new event");
-            mainApp.getAddQuestionStageModel().setDataToController(this.questions);
-            mainApp.getAddQuestionStageModel().updateData();
-            mainApp.showAddQuestionStage();
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        myModel.showAddQuestionStage();
     }
     @FXML
     public void editButton(){
-        System.out.println("edit event");
+        if(questionTableView.getSelectionModel().getSelectedItem() == null){
+            myModel.openErrorSelectWindow();
+            return;
+        }
+        int index  =  questionTableView.getSelectionModel().getSelectedIndex();
+        myModel.showEditQuestion(questions.get(index));
     }
 
     @FXML void deleteButton(){
@@ -88,6 +90,6 @@ public class SceneViewQuestionsController implements Controller{
     }
 
     @FXML void backButton(){
-        mainApp.showViewThemes();
+        myModel.goToViewThemes();
     }
 }
