@@ -17,18 +17,23 @@ public class StageModel implements Model {
     protected Controller controller;
     protected Pane rootLayout;
     protected Stage primaryStage;
-    protected MainApp mainApp;
+    protected Model parent;
 
-    public StageModel(Stage primaryStage, MainApp mainApp, String pathToFXML) {
+    private boolean isRootStage = false;
+
+    public StageModel(Stage primaryStage, Model parent, URL FXMLLocation) {
         this.primaryStage = primaryStage;
-        this.mainApp = mainApp;
-        init(pathToFXML);
+        this.parent = parent;
+        if(parent == null)
+            isRootStage = true;
+
+        init(FXMLLocation);
     }
 
-    public void init(String pathToFXML){
+    public void init(URL pathToFXML){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource(pathToFXML));
+            loader.setLocation(pathToFXML);
             rootLayout =  loader.load();
 
             Scene scene = new Scene(rootLayout);

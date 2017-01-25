@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardSystem {
+
+    // TODO: 24.01.2017 подсказка
     private ArrayList<Theme> themeList = new ArrayList<Theme>();
     private ArrayList<Question> universalQuestion = new ArrayList<Question>();
 
@@ -118,23 +120,23 @@ public class CardSystem {
 
     public void loadDefPar(){
         Theme firstTheme = new Theme("First theme");
-        firstTheme.addQuestion(new Question("question11" , "answer11"));
-        firstTheme.addQuestion(new Question("question12" , "answer12"));
-        firstTheme.addQuestion(new Question("question13" , "answer13"));
-        firstTheme.addQuestion(new Question("question14" , "answer14"));
+        firstTheme.addQuestion(new Question("question11" , "answer11", "tip11"));
+        firstTheme.addQuestion(new Question("question12" , "answer12", "tip12"));
+        firstTheme.addQuestion(new Question("question13" , "answer13", "tip13"));
+        firstTheme.addQuestion(new Question("question14" , "answer14", "tip14"));
 
         Theme secondTheme = new Theme("Second theme");
-        secondTheme.addQuestion(new Question("question21", "answer21"));
-        secondTheme.addQuestion(new Question("question22", "answer22"));
-        secondTheme.addQuestion(new Question("question23", "answer23"));
-        secondTheme.addQuestion(new Question("question24", "answer24"));
-        secondTheme.addQuestion(new Question("question25", "answer25"));
-        secondTheme.addQuestion(new Question("question26", "answer26"));
+        secondTheme.addQuestion(new Question("question21", "answer21", "tip21"));
+        secondTheme.addQuestion(new Question("question22", "answer22", "tip22"));
+        secondTheme.addQuestion(new Question("question23", "answer23", "tip23"));
+        secondTheme.addQuestion(new Question("question24", "answer24", "tip24"));
+        secondTheme.addQuestion(new Question("question25", "answer25", "tip25"));
+        secondTheme.addQuestion(new Question("question26", "answer26", "tip26"));
 
         Theme thirdTheme = new Theme("Third theme");
-        thirdTheme.addQuestion(new Question("question31", "answer31"));
-        thirdTheme.addQuestion(new Question("question32", "answer32"));
-        thirdTheme.addQuestion(new Question("question33", "answer33"));
+        thirdTheme.addQuestion(new Question("question31", "answer31", "tip31"));
+        thirdTheme.addQuestion(new Question("question32", "answer32", "tip32"));
+        thirdTheme.addQuestion(new Question("question33", "answer33", "tip33"));
 
         addUniversalQuestion(new Question("universal Question 1"));
         addUniversalQuestion(new Question("universal Question 2"));

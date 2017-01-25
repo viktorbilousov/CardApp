@@ -27,14 +27,15 @@ public class SceneViewQuestionsController implements Controller{
     private TableColumn<QuestionProperty, String> questionColumn;
     @FXML
     private TableColumn<QuestionProperty, String> answerColumn;
+    @FXML
+    private TableColumn<QuestionProperty, String> tipColumn;
 
     @FXML
     public void initialize() {
         questionColumn.setCellValueFactory(data -> data.getValue().questionPropertyProperty());
         answerColumn.setCellValueFactory(data -> data.getValue().answerPropertyProperty());
+        tipColumn.setCellValueFactory(data -> data.getValue().tipPropertyProperty());
     }
-
-
     public void updateElementsData() {
         if(questions == null)
             return;

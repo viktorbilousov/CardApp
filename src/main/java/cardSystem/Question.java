@@ -8,6 +8,7 @@ import javafx.beans.property.StringProperty;
 public class Question {
     private String question;
     private String answer = "";
+    private String tip = "";
 
     public Question(String question) {
         this.question = question;
@@ -17,6 +18,12 @@ public class Question {
     public Question(String question, String answer) {
         this.question = question;
         this.answer = answer;
+    }
+
+    public Question(String question, String answer, String tip) {
+        this.question = question;
+        this.answer = answer;
+        this.tip = tip;
     }
 
     public Question() {
@@ -38,11 +45,19 @@ public class Question {
         this.answer = answer;
     }
 
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
+    }
 
     @Override
     public String toString() {
         return  "question='" + question + '\'' +
-                ", answer='" + answer + '\'' ;
+                ", answer='" + answer + '\''   +
+                ", tip='" + tip + "\'";
     }
 
     @Override
@@ -52,6 +67,7 @@ public class Question {
         Question q = (Question)obj;
 
         return this.question.equals(q.question)
-                && this.answer.equals(q.answer);
+                && this.answer.equals(q.answer)
+                && this.tip.equals(q.tip);
     }
 }

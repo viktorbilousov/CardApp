@@ -1,56 +1,68 @@
 package application.model.sceneModel;
 
 import application.MainApp;
-import application.cardSystemProperty.QuestionProperty;
 import application.controllers.SceneViewQuestionsController;
 import application.model.Model;
 import application.model.SceneModel;
 import application.model.stageModels.AddQuestionStageModel;
+import application.model.stageModels.RootStageModel;
+import application.util.StageUtil;
 import cardSystem.Question;
 import javafx.scene.layout.BorderPane;
 
-import java.util.ArrayList;
+import java.net.URL;
 
-/**
- * Created by BellPC on 23.01.2017.
- */
+
 public class ViewQuestionSceneModel extends SceneModel {
 
-    SceneViewQuestionsController questionsController = (SceneViewQuestionsController)this.controller;
+    private SceneViewQuestionsController questionsController = (SceneViewQuestionsController)this.controller;
+    private AddQuestionStageModel addQuestionModel;
+    private RootStageModel rootStageModel = (RootStageModel) this.parentModel;
 
-    public ViewQuestionSceneModel(BorderPane rootLayout, MainApp mainApp, String pathToFXML) {
-        super(rootLayout, mainApp, pathToFXML);
+    public ViewQuestionSceneModel(BorderPane rootLayout, Model parentModel, URL FXMLLocation) {
+        super(rootLayout, parentModel, FXMLLocation);
+        init();
+    }
+
+    private void init(){
+        addQuestionModel = new AddQuestionStageModel(
+                StageUtil.makeNewStage("Question", rootStageModel.getPrimaryStage()),
+                this,
+                MainApp.class.getResource("../fxml/StageAddQuestion.fxml")
+        );
     }
 
     public void goToViewThemes(){
-        mainApp.getViewThemesModel().show();
+       rootStageModel.showViewThemes();
     }
-
     public void showAddQuestionStage(){
-        AddQuestionStageModel addQuestion = mainApp.getAddQuestionStageModel();
-        addQuestion.clearFields();
-        addQuestion.setDataToController(questionsController.getInputData());
-        addQuestion.setEditMode(false); // добавить новые
-        addQuestion.show();
+        addQuestionModel.clearFields();
+        addQuestionModel.setDataToController(questionsController.getInputData());
+        addQuestionModel.setEditMode(false); // добавить новые
+        addQuestionModel.show();
     }
     public void showEditQuestion(Question q) {
-        AddQuestionStageModel addQuestion = mainApp.getAddQuestionStageModel();
-        addQuestion.setDefFieldsString(q.getQuestion(), q.getAnswer());
-        addQuestion.setDataToController(q);
-        addQuestion.setEditMode(true); // включает редактирование
-        addQuestion.show();
+        addQuestionModel.setDefFieldsString(q.getQuestion(), q.getAnswer(), q.getTip());
+        addQuestionModel.setDataToController(q);
+        addQuestionModel.setEditMode(true); // включает редактирование
+        addQuestionModel.show();
     }
-
     public void viewTheme(int indexTheme){
-        setDataToController(mainApp.getCardSystem().getThemeList()
-                .get(indexTheme).getQuestionsList());
+        setDataToController(rootStageModel
+                .getCardSystem()
+                .getThemeList()
+                .get(indexTheme)
+                .getQuestionsList()
+        );
         updateData();
     }
     public void openErrorSelectWindow(){
-        mainApp.showAlertMessage(
+        StageUtil.showAlertMessage(
                 "No Selection",
                 "No Question Selected",
-                "Please select a question in the table.");
+                "Please select a question in the table.",
+                rootStageModel.getPrimaryStage()
+        );
     }
 
 }
