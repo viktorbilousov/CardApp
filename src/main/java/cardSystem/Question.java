@@ -12,7 +12,6 @@ public class Question {
 
     public Question(String question) {
         this.question = question;
-        this.answer = "";
     }
 
     public Question(String question, String answer) {
@@ -66,8 +65,8 @@ public class Question {
             return false;
         Question q = (Question)obj;
 
-        return this.question.equals(q.question)
-                && this.answer.equals(q.answer)
-                && this.tip.equals(q.tip);
+        return this.question.equals(q.question);
+              /*  && this.answer.equals(q.answer)
+                && this.tip.equals(q.tip);*/
     }
 }

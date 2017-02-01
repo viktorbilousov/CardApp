@@ -4,9 +4,12 @@ import application.MainApp;
 import application.controllers.StageAddQuestionController;
 import application.model.Model;
 import application.model.StageModel;
+import cardSystem.Question;
+import cardSystem.Theme;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class AddQuestionStageModel extends StageModel {
@@ -31,6 +34,13 @@ public class AddQuestionStageModel extends StageModel {
 
     public void updateDataInAddedModel() {
        parent.updateData();
+    }
+
+    public void setQuestionList(ArrayList<Question> questionList){
+        myController.setListToAdding(questionList);
+    }
+    public void setEditQuestion(Question question){
+        myController.setEditQuestion(question);
     }
 
 }

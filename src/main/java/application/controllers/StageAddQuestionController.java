@@ -90,26 +90,20 @@ public class StageAddQuestionController implements Controller {
     @Override
     public void updateElementsData() {}
 
-    @Override
-    public void setInputData(Object data) {
-        if(data == null)
-            return;
-
-        if(data instanceof ArrayList){
-            listToAdding = (ArrayList<Question>) data;
-            return;
-        }else if(data instanceof Question){
-            editQuestion = (Question)data;
-            return;
-        }else {
-            System.out.println("error input data in " + getClass().getSimpleName());
-        }
-        return;
+    public ArrayList<Question> getListToAdding() {
+        return listToAdding;
     }
 
-    @Override
-    public ArrayList<Question> getInputData() {
-        return listToAdding;
+    public void setListToAdding(ArrayList<Question> listToAdding) {
+        this.listToAdding = listToAdding;
+    }
+
+    public Question getEditQuestion() {
+        return editQuestion;
+    }
+
+    public void setEditQuestion(Question editQuestion) {
+        this.editQuestion = editQuestion;
     }
 
     @Override
@@ -189,10 +183,10 @@ public class StageAddQuestionController implements Controller {
         tipField.clear();
     }
     public void setDefFieldsValue(String question, String answer, String tip){
-        if(!isValidValues(question, answer, tip)){
+       /* if(!isValidValues(question, answer, tip)){
             System.out.println("error input fields value in " + getClass().getSimpleName());
             return;
-        }
+        }*/
         questionField.setText(question);
         answerField.setText(answer);
         tipField.setText(tip);

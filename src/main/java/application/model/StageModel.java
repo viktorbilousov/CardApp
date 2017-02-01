@@ -63,19 +63,12 @@ public class StageModel implements Model {
     }
 
 
-    @Override
-    public void setDataToController(Object dataToController) {
-        if(controller == null){
-            System.out.println("error: controller == null in " + getClass().getSimpleName());
-            return;
-        }
-        controller.setInputData(dataToController);
-    }
     protected void preShowInit(){};
     @Override
     public void show(){
         preShowInit();
-        primaryStage.show();
+        if(!primaryStage.isShowing())
+            primaryStage.show();
     }
     public void showAndWait(){
         primaryStage.showAndWait();
@@ -91,6 +84,10 @@ public class StageModel implements Model {
             return;
         }
         controller.updateElementsData();
+    }
+    @Override
+    public void updateDataParent() {
+        parent.updateData();
     }
 
 }

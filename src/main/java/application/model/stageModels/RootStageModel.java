@@ -48,11 +48,11 @@ public class RootStageModel extends StageModel {
                 this,
                 MainApp.class.getResource("../fxml/SceneViewThemes.fxml")
         );
-        viewThemesScene.setDataToController(system.getThemeList());
+        viewThemesScene.setThemeList(system.getThemeList());
     }
 
     public void showViewQuestionOfTheme(int idTheme){
-        viewQuestionScene.viewTheme(idTheme);
+        viewQuestionScene.viewThemesQuestion(idTheme);
         viewQuestionScene.show();
     }
 

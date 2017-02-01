@@ -9,6 +9,7 @@ import cardSystem.Question;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -29,6 +30,8 @@ public class SceneViewQuestionsController implements Controller{
     private TableColumn<QuestionProperty, String> answerColumn;
     @FXML
     private TableColumn<QuestionProperty, String> tipColumn;
+    @FXML
+    private Label nameThemeLabel;
 
     @FXML
     public void initialize() {
@@ -36,6 +39,17 @@ public class SceneViewQuestionsController implements Controller{
         answerColumn.setCellValueFactory(data -> data.getValue().answerPropertyProperty());
         tipColumn.setCellValueFactory(data -> data.getValue().tipPropertyProperty());
     }
+
+    public ArrayList<Question> getQuestionsList() {
+        return questions;
+    }
+
+    public void setQuestionsList(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
+
+
+
     public void updateElementsData() {
         if(questions == null)
             return;
@@ -48,21 +62,8 @@ public class SceneViewQuestionsController implements Controller{
 
     }
 
-    @Override
-    public void setInputData(Object data) {
-        if(data == null)
-            return;
-
-        if(!(data instanceof ArrayList)){
-            System.out.println("error input data in " + getClass().getSimpleName());
-            return;
-        }
-        questions = (ArrayList<Question>)data;
-    }
-
-    @Override
-    public ArrayList<Question> getInputData() {
-        return questions;
+    public void setNameThemeLabel(String themeName){
+        nameThemeLabel.setText(themeName);
     }
 
     @Override
@@ -92,5 +93,10 @@ public class SceneViewQuestionsController implements Controller{
 
     @FXML void backButton(){
         myModel.goToViewThemes();
+    }
+
+    @FXML
+    private void uniButton(){
+        myModel.showUniQuestionStage();
     }
 }

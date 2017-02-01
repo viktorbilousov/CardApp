@@ -1,8 +1,9 @@
 package application.model.sceneModel;
 
 import application.MainApp;
-import application.model.Model;
+import application.controllers.SceneViewThemesController;
 import application.model.SceneModel;
+import application.model.StageModel;
 import application.model.stageModels.AddThemeStageModel;
 import application.model.stageModels.RootStageModel;
 import application.util.StageUtil;
@@ -10,13 +11,15 @@ import cardSystem.Theme;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 public class ViewThemesSceneModel extends SceneModel{
 
-    private RootStageModel rootModel = (RootStageModel) this.parentModel;
+    private RootStageModel rootModel = (RootStageModel) this.parent;
     private AddThemeStageModel addThemeModel;
+    private SceneViewThemesController myController = (SceneViewThemesController) controller;
 
-    public ViewThemesSceneModel(BorderPane rootLayout, Model parentModel, URL FXMLLocation) {
+    public ViewThemesSceneModel(BorderPane rootLayout, StageModel parentModel, URL FXMLLocation) {
         super(rootLayout, parentModel, FXMLLocation);
         init();
     }
@@ -29,20 +32,24 @@ public class ViewThemesSceneModel extends SceneModel{
         );
     }
 
+    public void setThemeList(ArrayList<Theme> themes){
+        myController.setThemeArrayList(themes);
+        updateData();
+    }
 
     public void showQuestionScene(int idTheme){
         rootModel.showViewQuestionOfTheme(idTheme);
     }
     public void showAddThemeStage(){
         addThemeModel.setEditMode(false);
-        addThemeModel.setDataToController(controller.getInputData());
+        addThemeModel.setThemesList(myController.getThemeArrayList());
         addThemeModel.show();
     }
 
     public void showEditTheme(Theme t) {
         addThemeModel.setThemeNameField(t.getThemeName());
         addThemeModel.setEditMode(true);
-        addThemeModel.setDataToController(t);
+        addThemeModel.setEditTheme(t);
         addThemeModel.show();
     }
 

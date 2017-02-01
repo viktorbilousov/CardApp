@@ -14,12 +14,12 @@ public class SceneModel implements Model {
     protected Controller controller;
     protected BorderPane rootLayout;
     protected AnchorPane thisLayout;
-    protected Model parentModel;
+    protected StageModel parent;
 
 
-    public SceneModel(BorderPane rootLayout, Model parentModel, URL FXMLLocation) {
+    public SceneModel(BorderPane rootLayout, StageModel parent, URL FXMLLocation) {
         this.rootLayout = rootLayout;
-        this.parentModel = parentModel;
+        this.parent = parent;
         init(FXMLLocation);
     }
 
@@ -46,15 +46,6 @@ public class SceneModel implements Model {
     }
 
     @Override
-    public void setDataToController(Object dataToController) {
-        if(controller == null){
-            System.out.println("error: controller == null in " + getClass().getSimpleName());
-            return;
-        }
-        controller.setInputData(dataToController);
-        controller.updateElementsData();
-    }
-    @Override
     public void updateData(){
         if(controller == null){
             System.out.println("error: controller == null in " + getClass().getSimpleName());
@@ -62,6 +53,20 @@ public class SceneModel implements Model {
         }
         controller.updateElementsData();
     }
+
+    @Override
+    public void updateDataParent() {
+        parent.parent.updateData();
+    }
+
+    public void updateParentsStage(){
+        parent.updateData();
+    }
+
+    public void closeParentStage(){
+        parent.close();
+    }
+
 
     protected void preShowInit(){};
     @Override

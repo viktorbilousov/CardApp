@@ -43,6 +43,22 @@ public class StageAddThemeController implements Controller {
         themeField.setText(theme);
     }
 
+    public ArrayList<Theme> getThemeList() {
+        return themeArrayList;
+    }
+
+    public void setThemeList(ArrayList<Theme> themeArrayList) {
+        this.themeArrayList = themeArrayList;
+    }
+
+    public Theme getEditTheme() {
+        return editTheme;
+    }
+
+    public void setEditTheme(Theme editTheme) {
+        this.editTheme = editTheme;
+    }
+
     @Override
     public void initialize() {
         clearField();
@@ -51,31 +67,12 @@ public class StageAddThemeController implements Controller {
     @Override
     public void updateElementsData() {}
 
-    @Override
-    public void setInputData(Object data) {
-        if(data == null)
-            return;
-        if(data instanceof ArrayList){
-            themeArrayList = (ArrayList<Theme>)data;
-            return;
-        }
-        if(data instanceof Theme){
-            editTheme = (Theme) data;
-            return;
-        }
-        System.out.println("error input data in " +getClass().getSimpleName());
-        return;
-    }
 
     @Override
     public void setMyModel(Model model) {
         this.myModel = (AddThemeStageModel) model;
     }
 
-    @Override
-    public ArrayList<Theme> getInputData() {
-        return themeArrayList;
-    }
 
     @FXML
     private void leftButton(){
@@ -98,10 +95,6 @@ public class StageAddThemeController implements Controller {
     @FXML
     private void closeButton(){
         myModel.close();
-    }
-    @FXML
-    private void settingButton(){
-        System.out.println("setting event!");
     }
 
     public void clearField(){

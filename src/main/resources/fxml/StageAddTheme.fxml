@@ -11,6 +11,5 @@
         <Button fx:id="leftButton" layoutX="179.0" layoutY="103.0" mnemonicParsing="false" onAction="#leftButton" prefWidth="45.0" text="Add" />
         <Button layoutX="286.0" layoutY="103.0" mnemonicParsing="false" onAction="#closeButton" text="Close" />
         <TextField fx:id="themeField" layoutX="234.0" layoutY="51.0" />
-      <Button layoutX="383.0" layoutY="103.0" mnemonicParsing="false" onAction="#settingButton" prefHeight="25.0" prefWidth="78.0" text="Setting ..." textAlignment="CENTER" wrapText="true" />
     </children>
 </AnchorPane>

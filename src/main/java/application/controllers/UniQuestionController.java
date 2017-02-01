@@ -1,15 +1,12 @@
 package application.controllers;
 
-import application.MainApp;
 import application.model.Model;
-import cardSystem.Question;
-import cardSystem.Theme;
-import javafx.application.Application;
-import javafx.fxml.FXML;
 
-import java.util.ArrayList;
+/**
+ * Created by BellPC on 26.01.2017.
+ */
+public class UniQuestionController implements Controller {
 
-public class StageRootController implements Controller {
 
     @Override
     public void initialize() {
@@ -22,8 +19,11 @@ public class StageRootController implements Controller {
     }
 
 
+
     @Override
     public void setMyModel(Model model) {
 
     }
+
+
 }

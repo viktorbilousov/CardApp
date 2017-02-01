@@ -23,17 +23,13 @@ public class SceneViewThemesController implements Controller {
     @FXML
     TableColumn<ThemeProperty, String> c1;
 
-    public void setInputData(Object data) {
-        if(!(data instanceof ArrayList)){
-            System.out.println("error input data in " + getClass().getSimpleName());
-            return;
-        }
-        themeArrayList = (ArrayList<Theme>)data;
+
+    public ArrayList<Theme> getThemeArrayList() {
+        return themeArrayList;
     }
 
-    @Override
-    public ArrayList<Theme> getInputData() {
-        return themeArrayList;
+    public void setThemeArrayList(ArrayList<Theme> themeArrayList) {
+        this.themeArrayList = themeArrayList;
     }
 
     @FXML
@@ -79,6 +75,10 @@ public class SceneViewThemesController implements Controller {
         myModel.showQuestionScene(index);
     }
     @FXML void deleteButton(){
+        if(themeTableView.getSelectionModel().getSelectedItem() == null){
+            myModel.openErrorSelectWindow();
+            return;
+        }
         int index =  themeTableView.getSelectionModel().getFocusedIndex();
         this.themeArrayList.remove(index);
         this.updateElementsData();

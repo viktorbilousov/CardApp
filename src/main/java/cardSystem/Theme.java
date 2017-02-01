@@ -8,7 +8,7 @@ import java.util.List;
 
 @XmlType(name = "Theme")
 public class Theme {
-    private List<Question> questionsList = new ArrayList<Question>();
+    private ArrayList<Question> questionsList = new ArrayList<Question>();
     private String themeName;
 
     public Theme() {}
@@ -19,7 +19,7 @@ public class Theme {
     }
 
     @XmlElement(name = "questions")
-    public List<Question> getQuestionsList() {
+    public ArrayList<Question> getQuestionsList() {
         return questionsList;
     }
 
