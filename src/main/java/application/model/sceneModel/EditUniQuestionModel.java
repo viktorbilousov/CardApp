@@ -1,7 +1,7 @@
 package application.model.sceneModel;
 
 
-import application.controllers.EditUniQuestionController;
+import application.controllers.UniQuestionEditController;
 import application.model.SceneModel;
 import application.model.StageModel;
 import application.model.stageModels.UniQuestionModel;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class EditUniQuestionModel extends SceneModel {
 
-    EditUniQuestionController myController = (EditUniQuestionController) controller;
+    UniQuestionEditController myController = (UniQuestionEditController) controller;
     UniQuestionModel uniParent = (UniQuestionModel)this.parent;
 
     public EditUniQuestionModel(BorderPane rootLayout, StageModel parent, URL FXMLLocation) {

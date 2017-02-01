@@ -1,7 +1,7 @@
 package application.model.sceneModel;
 
 import application.MainApp;
-import application.controllers.SceneViewThemesController;
+import application.controllers.ThemesViewSceneController;
 import application.model.SceneModel;
 import application.model.StageModel;
 import application.model.stageModels.AddThemeStageModel;
@@ -17,7 +17,7 @@ public class ViewThemesSceneModel extends SceneModel{
 
     private RootStageModel rootModel = (RootStageModel) this.parent;
     private AddThemeStageModel addThemeModel;
-    private SceneViewThemesController myController = (SceneViewThemesController) controller;
+    private ThemesViewSceneController myController = (ThemesViewSceneController) controller;
 
     public ViewThemesSceneModel(BorderPane rootLayout, StageModel parentModel, URL FXMLLocation) {
         super(rootLayout, parentModel, FXMLLocation);

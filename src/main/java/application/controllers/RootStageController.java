@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 
 import java.util.ArrayList;
 
-public class StageRootController implements Controller {
+public class RootStageController implements Controller {
 
     @Override
     public void initialize() {

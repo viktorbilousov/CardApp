@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 
 import java.util.*;
 
-public class SceneViewThemesController implements Controller {
+public class ThemesViewSceneController implements Controller {
 
     private ObservableList<ThemeProperty> observableList = FXCollections.observableArrayList();
     private ArrayList<Theme> themeArrayList;

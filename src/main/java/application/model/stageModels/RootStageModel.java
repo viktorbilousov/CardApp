@@ -41,12 +41,12 @@ public class RootStageModel extends StageModel {
         viewQuestionScene = new ViewQuestionSceneModel(
                 (BorderPane) getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/SceneViewQuestions.fxml")
+                MainApp.class.getResource("../fxml/SceneQuestionsView.fxml")
         );
         viewThemesScene = new ViewThemesSceneModel(
                 (BorderPane)getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/SceneViewThemes.fxml")
+                MainApp.class.getResource("../fxml/SceneThemesView.fxml")
         );
         viewThemesScene.setThemeList(system.getThemeList());
     }

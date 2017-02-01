@@ -15,7 +15,7 @@ import javafx.scene.control.TableView;
 
 import java.util.ArrayList;
 
-public class SceneViewQuestionsController implements Controller{
+public class QuestionsViewSceneController implements Controller{
 
 
     private ArrayList<Question> questions;

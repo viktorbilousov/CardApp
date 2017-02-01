@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by BellPC on 26.01.2017.
  */
-public class CheckUniQuestionController implements Controller {
+public class UniQuestionCheckController implements Controller {
 
 
     ObservableList<QuestionProperty> list = FXCollections.observableArrayList();

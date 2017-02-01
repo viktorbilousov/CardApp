@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 
-public class StageAddQuestionController implements Controller {
+public class QuestionAddStageController implements Controller {
 
     private ArrayList<Question> listToAdding;
     private Question editQuestion;

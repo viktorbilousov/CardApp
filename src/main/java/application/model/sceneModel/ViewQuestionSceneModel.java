@@ -1,7 +1,7 @@
 package application.model.sceneModel;
 
 import application.MainApp;
-import application.controllers.SceneViewQuestionsController;
+import application.controllers.QuestionsViewSceneController;
 import application.model.SceneModel;
 import application.model.StageModel;
 import application.model.stageModels.AddQuestionStageModel;
@@ -17,7 +17,7 @@ import java.net.URL;
 
 public class ViewQuestionSceneModel extends SceneModel {
 
-    private SceneViewQuestionsController questionsController = (SceneViewQuestionsController)this.controller;
+    private QuestionsViewSceneController questionsController = (QuestionsViewSceneController)this.controller;
     private AddQuestionStageModel addQuestionModel;
     private RootStageModel rootStageModel = (RootStageModel) this.parent;
     private UniQuestionModel uniQuestionModel;
@@ -32,7 +32,7 @@ public class ViewQuestionSceneModel extends SceneModel {
         addQuestionModel = new AddQuestionStageModel(
                 StageUtil.makeNewStage("Question", rootStageModel.getPrimaryStage()),
                 this,
-                MainApp.class.getResource("../fxml/StageAddQuestion.fxml")
+                MainApp.class.getResource("../fxml/StageQuestionAdd.fxml")
         );
 
         uniQuestionModel = new UniQuestionModel(

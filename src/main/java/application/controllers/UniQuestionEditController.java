@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by BellPC on 27.01.2017.
  */
-public class EditUniQuestionController implements Controller {
+public class UniQuestionEditController implements Controller {
 
     private EditUniQuestionModel myModel;
     private ArrayList<Question> questionsList;

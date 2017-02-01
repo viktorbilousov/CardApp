@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 
-public class StageAddThemeController implements Controller {
+public class ThemeAddStageController implements Controller {
 
 
     private ArrayList<Theme> themeArrayList;

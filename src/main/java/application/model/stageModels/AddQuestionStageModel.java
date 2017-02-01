@@ -1,11 +1,9 @@
 package application.model.stageModels;
 
-import application.MainApp;
-import application.controllers.StageAddQuestionController;
+import application.controllers.QuestionAddStageController;
 import application.model.Model;
 import application.model.StageModel;
 import cardSystem.Question;
-import cardSystem.Theme;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 
 public class AddQuestionStageModel extends StageModel {
 
-   private StageAddQuestionController myController = (StageAddQuestionController) this.controller;
+   private QuestionAddStageController myController = (QuestionAddStageController) this.controller;
 
     public AddQuestionStageModel(Stage primaryStage, Model parent, URL FXMLLocation) {
         super(primaryStage, parent, FXMLLocation);
