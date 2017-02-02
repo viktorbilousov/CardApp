@@ -3,7 +3,7 @@ package application.model.sceneModel;
 import application.controllers.UniQuestionCheckController;
 import application.model.SceneModel;
 import application.model.StageModel;
-import application.model.stageModels.UniQuestionModel;
+import application.model.stageModels.UniQuestionStageModel;
 import cardSystem.Question;
 import javafx.scene.layout.BorderPane;
 
@@ -11,12 +11,12 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class CheckUniQuestionModel extends SceneModel {
+public class UniQuestionsCheckSceneModel extends SceneModel {
 
     UniQuestionCheckController myController = (UniQuestionCheckController)controller;
-    UniQuestionModel parentModel = (UniQuestionModel)parent;
+    UniQuestionStageModel parentModel = (UniQuestionStageModel)parent;
 
-    public CheckUniQuestionModel(BorderPane rootLayout, StageModel parentModel, URL FXMLLocation) {
+    public UniQuestionsCheckSceneModel(BorderPane rootLayout, StageModel parentModel, URL FXMLLocation) {
         super(rootLayout, parentModel, FXMLLocation);
     }
 

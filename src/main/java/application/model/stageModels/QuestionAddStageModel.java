@@ -10,11 +10,11 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class AddQuestionStageModel extends StageModel {
+public class QuestionAddStageModel extends StageModel {
 
    private QuestionAddStageController myController = (QuestionAddStageController) this.controller;
 
-    public AddQuestionStageModel(Stage primaryStage, Model parent, URL FXMLLocation) {
+    public QuestionAddStageModel(Stage primaryStage, Model parent, URL FXMLLocation) {
         super(primaryStage, parent, FXMLLocation);
     }
 

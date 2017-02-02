@@ -1,7 +1,7 @@
 package application.controllers;
 
 import application.model.Model;
-import application.model.stageModels.AddQuestionStageModel;
+import application.model.stageModels.QuestionAddStageModel;
 import cardSystem.Question;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +15,7 @@ public class QuestionAddStageController implements Controller {
 
     private ArrayList<Question> listToAdding;
     private Question editQuestion;
-    private AddQuestionStageModel myModel;
+    private QuestionAddStageModel myModel;
     private boolean checkValidBothValue = true;
     private boolean isEditMode = false;
     private final int RESIZE_CONST = 28; // def = 28
@@ -55,8 +55,6 @@ public class QuestionAddStageController implements Controller {
         initTextArea(answerArea, answerField);
         initTextArea(tipArea, tipField);
 
-
-
         answerField.setOnKeyTyped   (observable -> fieldTextChange(answerField, answerArea));
         questionField.setOnKeyTyped (observable -> fieldTextChange(questionField, questionArea));
         tipField.setOnKeyTyped      (observable -> fieldTextChange(tipField, tipArea));
@@ -72,7 +70,6 @@ public class QuestionAddStageController implements Controller {
         questionArea.focusedProperty().addListener  (observable -> areaFocusEvent(questionArea, questionField));
         answerArea.focusedProperty().addListener    (observable -> areaFocusEvent(answerArea, answerField));
         tipArea.focusedProperty().addListener       (observable -> areaFocusEvent(tipArea, tipField));
-
 
         clearFields();
     }
@@ -108,7 +105,7 @@ public class QuestionAddStageController implements Controller {
 
     @Override
     public void setMyModel(Model model) {
-        this.myModel = (AddQuestionStageModel) model;
+        this.myModel = (QuestionAddStageModel) model;
     }
 
     @FXML

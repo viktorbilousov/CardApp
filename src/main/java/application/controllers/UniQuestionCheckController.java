@@ -2,7 +2,7 @@ package application.controllers;
 
 import application.cardSystemProperty.QuestionProperty;
 import application.model.Model;
-import application.model.sceneModel.CheckUniQuestionModel;
+import application.model.sceneModel.UniQuestionsCheckSceneModel;
 import cardSystem.Question;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +36,7 @@ public class UniQuestionCheckController implements Controller {
 
     private ArrayList<Question> uniQuestion;
     private ArrayList<Question> question;
-    private CheckUniQuestionModel myModel;
+    private UniQuestionsCheckSceneModel myModel;
 
 
     @Override
@@ -70,7 +70,7 @@ public class UniQuestionCheckController implements Controller {
 
     @Override
     public void setMyModel(Model model) {
-        myModel = (CheckUniQuestionModel) model;
+        myModel = (UniQuestionsCheckSceneModel) model;
     }
 
 

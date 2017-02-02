@@ -8,13 +8,11 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.ThemesViewSceneController">
     <children>
         <Button layoutX="301.0" layoutY="343.0" mnemonicParsing="false" onAction="#editButton" prefWidth="51.0" text="Edit" />
-        <Button layoutX="224.0" layoutY="343.0" mnemonicParsing="false" onAction="#newButton" prefWidth="51.0" text="New" />
-        <Button layoutX="484.0" layoutY="343.0" mnemonicParsing="false" onAction="#deleteButton" text="Delete" />
         <TableView fx:id="themeTableView" layoutX="35.0" layoutY="14.0" prefHeight="319.0" prefWidth="528.0">
             <columns>
-                <TableColumn fx:id="c1" prefWidth="530.0" text="C1" />
+                <TableColumn fx:id="c1" prefWidth="530.0" text="Themes" />
             </columns>
         </TableView>
-      <Button layoutX="381.0" layoutY="343.0" mnemonicParsing="false" onAction="#openButton" prefWidth="51.0" text="Open" />
+      <Button layoutX="457.0" layoutY="343.0" mnemonicParsing="false" onAction="#openButton" prefWidth="51.0" text="Open" />
     </children>
 </AnchorPane>

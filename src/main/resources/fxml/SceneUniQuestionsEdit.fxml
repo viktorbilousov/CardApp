@@ -13,6 +13,6 @@
             </columns>
         </TableView>
         <Button layoutX="300.0" layoutY="339.0" mnemonicParsing="false" onAction="#addButton" text="Add" />
-        <Button layoutX="209.0" layoutY="339.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
+        <Button layoutX="209.0" layoutY="339.0" mnemonicParsing="false" onAction="#okButton" text="Ok" />
     </children>
 </AnchorPane>

@@ -4,7 +4,7 @@ package application.model.sceneModel;
 import application.controllers.UniQuestionEditController;
 import application.model.SceneModel;
 import application.model.StageModel;
-import application.model.stageModels.UniQuestionModel;
+import application.model.stageModels.UniQuestionStageModel;
 import application.util.StageUtil;
 import cardSystem.Question;
 import javafx.scene.layout.BorderPane;
@@ -12,12 +12,12 @@ import javafx.scene.layout.BorderPane;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class EditUniQuestionModel extends SceneModel {
+public class UniQuestionsEditSceneModel extends SceneModel {
 
     UniQuestionEditController myController = (UniQuestionEditController) controller;
-    UniQuestionModel uniParent = (UniQuestionModel)this.parent;
+    UniQuestionStageModel uniParent = (UniQuestionStageModel)this.parent;
 
-    public EditUniQuestionModel(BorderPane rootLayout, StageModel parent, URL FXMLLocation) {
+    public UniQuestionsEditSceneModel(BorderPane rootLayout, StageModel parent, URL FXMLLocation) {
         super(rootLayout, parent, FXMLLocation);
     }
 

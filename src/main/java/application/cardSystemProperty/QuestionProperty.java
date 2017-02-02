@@ -73,20 +73,6 @@ public class QuestionProperty {
         return new Question(questionProperty.get(), answerProperty.get(), tipProperty.get());
     }
 
-    public static StringConverter getConverter(){
-        return new StringConverter() {
-            @Override
-            public String toString(Object object) {
-                return object.toString();
-            }
-
-            @Override
-            public QuestionProperty fromString(String string) {
-                return new QuestionProperty(new Question(string));
-            }
-        };
-    }
-
     @Override
     public String toString() {
         return "QuestionProperty{" +

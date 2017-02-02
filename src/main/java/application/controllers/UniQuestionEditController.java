@@ -2,7 +2,7 @@ package application.controllers;
 
 import application.cardSystemProperty.QuestionProperty;
 import application.model.Model;
-import application.model.sceneModel.EditUniQuestionModel;
+import application.model.sceneModel.UniQuestionsEditSceneModel;
 import application.util.ButtonCell;
 import cardSystem.Question;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class UniQuestionEditController implements Controller {
 
-    private EditUniQuestionModel myModel;
+    private UniQuestionsEditSceneModel myModel;
     private ArrayList<Question> questionsList;
 
     @FXML
@@ -43,26 +43,25 @@ public class UniQuestionEditController implements Controller {
     @Override
     public void initialize() {
 
-        questionColumn.setCellFactory(param ->
-        {
-            TextFieldTableCell tableCell = new TextFieldTableCell<QuestionProperty, String>();
-            tableCell.setConverter(QuestionProperty.getConverter());
-            return tableCell;
-        });
+        questionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         questionColumn.setCellValueFactory(param -> param.getValue().questionPropertyProperty());
 
         questionColumn.setOnEditCommit(event -> {
             QuestionProperty question = event.getTableView().getItems().get(event.getTablePosition().getRow());
-            Object newQuestionObject = event.getNewValue(); // not cast directly to QuestionProperty
-            QuestionProperty newQuestionProperty = (QuestionProperty)newQuestionObject;
-
-            question.setQuestionProperty("null");
-            question.setQuestionProperty(newQuestionProperty.getQuestionProperty());
+            String newQuestion = event.getNewValue().toString();
+            int index = questionsList.indexOf(question.convertToQuestion());
+            questionsList.get(index).setQuestion(newQuestion);
+            question.setQuestionProperty(newQuestion);
         });
 
         deleteColumn.setCellFactory( param -> {
             ButtonCell button = new ButtonCell<QuestionProperty, String>();
-            button.getButton().setOnAction(event ->  tableView.getItems().remove(button.getItem()));
+            button.getButton().setOnAction(event -> {
+                QuestionProperty question = (QuestionProperty) button.getItem();
+                questionsList.remove(question.convertToQuestion());
+                tableView.getItems().remove(question);
+            });
             return button;
         });
         deleteColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue()));
@@ -79,17 +78,26 @@ public class UniQuestionEditController implements Controller {
 
     @Override
     public void setMyModel(Model model) {
-        myModel = (EditUniQuestionModel) model;
+        myModel = (UniQuestionsEditSceneModel) model;
     }
 
 
     @FXML
     private void addButton(){
-        questionsList.add(new Question("question"));
+        String nameQuestion = "Question";
+        Question addingQuestion = new Question(nameQuestion);
+        for(int i=1; ;i++) {
+            if(!questionsList.contains(addingQuestion)) {
+                questionsList.add(addingQuestion);
+                break;
+            }else {
+                addingQuestion.setQuestion(nameQuestion + i);
+            }
+        }
         updateElementsData();
     }
     @FXML
-    private void backButton(){
+    private void okButton(){
         myModel.showCheckQuestionScene();
     }
 

@@ -3,8 +3,8 @@ package application.model.stageModels;
 import application.MainApp;
 import application.model.Model;
 import application.model.StageModel;
-import application.model.sceneModel.CheckUniQuestionModel;
-import application.model.sceneModel.EditUniQuestionModel;
+import application.model.sceneModel.UniQuestionsCheckSceneModel;
+import application.model.sceneModel.UniQuestionsEditSceneModel;
 import cardSystem.Question;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -12,27 +12,27 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class UniQuestionModel extends StageModel {
+public class UniQuestionStageModel extends StageModel {
 
-    private CheckUniQuestionModel checkUniQuestion;
-    private EditUniQuestionModel editUniQuestion;
+    private UniQuestionsCheckSceneModel checkUniQuestion;
+    private UniQuestionsEditSceneModel editUniQuestion;
 
-    public UniQuestionModel(Stage primaryStage, Model parent, URL FXMLLocation) {
+    public UniQuestionStageModel(Stage primaryStage, Model parent, URL FXMLLocation) {
         super(primaryStage, parent, FXMLLocation);
         init();
      //   showCheckUniQuestion();
     }
 
     private void init(){
-        checkUniQuestion = new CheckUniQuestionModel(
+        checkUniQuestion = new UniQuestionsCheckSceneModel(
                 (BorderPane) getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/SceneUniQuestionCheck.fxml")
+                MainApp.class.getResource("../fxml/SceneUniQuestionsCheck.fxml")
         );
-        editUniQuestion = new EditUniQuestionModel(
+        editUniQuestion = new UniQuestionsEditSceneModel(
                 (BorderPane)getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/SceneUniQuestionEdit.fxml")
+                MainApp.class.getResource("../fxml/SceneUniQuestionsEdit.fxml")
         );
 
     }

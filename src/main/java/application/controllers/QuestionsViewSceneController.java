@@ -3,8 +3,7 @@ package application.controllers;
 
 import application.cardSystemProperty.QuestionProperty;
 import application.model.Model;
-import application.model.SceneModel;
-import application.model.sceneModel.ViewQuestionSceneModel;
+import application.model.sceneModel.QuestionsViewSceneModel;
 import cardSystem.Question;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +19,7 @@ public class QuestionsViewSceneController implements Controller{
 
     private ArrayList<Question> questions;
     private ObservableList<QuestionProperty> questionProperties = FXCollections.observableArrayList();
-    private ViewQuestionSceneModel myModel;
+    private QuestionsViewSceneModel myModel;
 
     @FXML
     private TableView<QuestionProperty> questionTableView;
@@ -48,8 +47,6 @@ public class QuestionsViewSceneController implements Controller{
         this.questions = questions;
     }
 
-
-
     public void updateElementsData() {
         if(questions == null)
             return;
@@ -68,7 +65,7 @@ public class QuestionsViewSceneController implements Controller{
 
     @Override
     public void setMyModel(Model model) {
-        this.myModel = (ViewQuestionSceneModel) model;
+        this.myModel = (QuestionsViewSceneModel) model;
     }
 
     @FXML
@@ -77,12 +74,7 @@ public class QuestionsViewSceneController implements Controller{
     }
     @FXML
     public void editButton(){
-        if(questionTableView.getSelectionModel().getSelectedItem() == null){
-            myModel.openErrorSelectWindow();
-            return;
-        }
-        int index  =  questionTableView.getSelectionModel().getSelectedIndex();
-        myModel.showEditQuestion(questions.get(index));
+        myModel.showEditQuestion();
     }
 
     @FXML void deleteButton(){

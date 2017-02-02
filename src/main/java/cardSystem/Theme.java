@@ -41,17 +41,13 @@ public class Theme {
         if(!(obj instanceof  Theme))
             return false;
         Theme theme = (Theme)obj;
-        return questionsList.equals(theme.getThemeName());
+        return themeName.equals(theme.getThemeName());
     }
 
     @Override
     public String toString() {
         String outString = "";
         outString += "theme : " + themeName ;
-        outString += "\n--------question----------\n";
-        for (Question q: questionsList){
-            outString += q + "\n";
-        }
         return outString;
     }
 }

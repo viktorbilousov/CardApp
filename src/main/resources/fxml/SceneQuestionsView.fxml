@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.QuestionsViewSceneController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.QuestionsViewSceneController">
     <children>
         <TableView fx:id="questionTableView" editable="true" layoutX="17.0" layoutY="47.0" prefHeight="294.0" prefWidth="575.0">
             <columns>
@@ -15,10 +15,8 @@
             <TableColumn fx:id="answerColumn" prefWidth="298.0" text="Answer" />
             </columns>
         </TableView>
-        <Button layoutX="331.0" layoutY="355.0" mnemonicParsing="false" onAction="#newButton" prefWidth="51.0" text="New" />
-        <Button layoutX="411.0" layoutY="355.0" mnemonicParsing="false" onAction="#editButton" prefWidth="51.0" text="Edit" />
-        <Button layoutX="503.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteButton" text="Delete" />
-      <Button layoutX="233.0" layoutY="355.0" mnemonicParsing="false" onAction="#backButton" prefWidth="51.0" text="Back " />
+        <Button layoutX="279.0" layoutY="355.0" mnemonicParsing="false" onAction="#editButton" prefWidth="51.0" text="Edit" />
+      <Button layoutX="492.0" layoutY="355.0" mnemonicParsing="false" onAction="#backButton" prefWidth="51.0" text="Back " />
       <Label fx:id="nameThemeLabel" layoutX="230.0" layoutY="14.0" text="TemaName" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="22.0" />

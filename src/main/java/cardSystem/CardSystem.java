@@ -148,9 +148,9 @@ public class CardSystem {
         addTheme(secondTheme);
         addTheme(thirdTheme);
 
-        addAllUniQuestionToTheme(firstTheme);
+/*        addAllUniQuestionToTheme(firstTheme);
         addAllUniQuestionToTheme(secondTheme);
-        addAllUniQuestionToTheme(thirdTheme);
+        addAllUniQuestionToTheme(thirdTheme);*/
 
     }
 
