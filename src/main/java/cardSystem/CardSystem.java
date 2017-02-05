@@ -1,15 +1,10 @@
 package cardSystem;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CardSystem {
 
-    // TODO: 24.01.2017 подсказка
     private ArrayList<Theme> themeList = new ArrayList<Theme>();
     private ArrayList<Question> universalQuestion = new ArrayList<Question>();
 
@@ -71,44 +66,16 @@ public class CardSystem {
         System.out.println("--------------------------------\n");
     }
 
-    public boolean loadPersonDataFromFile(File file) {
-        try {
-            JAXBContext context = JAXBContext
-                    .newInstance(CardSystemWrapper.class);
-            Unmarshaller um = context.createUnmarshaller();
-
-            // Чтение XML из файла и демаршализация.
-            CardSystemWrapper wrapper = (CardSystemWrapper) um.unmarshal(file);
-
-            CardSystem system = wrapper.getThemesSystem();
-            themeList = system.getThemeList();
-            universalQuestion = system.getUniversalQuestion();
-            return true;
-
-        } catch (Exception e) { // catches ANY exception
-            System.out.println(e);
-            return false;
+    @Override
+    public CardSystem clone() throws CloneNotSupportedException {
+        CardSystem cloneSys = new CardSystem();
+        for(Theme theme : themeList){
+            cloneSys.addTheme(theme.clone());
         }
-    }
-
-    public boolean savePersonDataToFile(File file) {
-        try {
-            JAXBContext context = JAXBContext
-                    .newInstance(CardSystemWrapper.class);
-            Marshaller m = context.createMarshaller();
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            CardSystemWrapper wrapper = new CardSystemWrapper();
-            wrapper.setThemesSystem(this);
-            m.marshal(wrapper, file);
-
-            // Сохраняем путь к файлу в реестре.
-           // setPersonFilePath(file);
-            return true;
-        } catch (Exception e) { // catches ANY exception
-            System.out.println(e);
-            return false;
+        for(Question question : universalQuestion){
+            cloneSys.addUniversalQuestion(question.clone());
         }
+        return cloneSys;
     }
 
     public void displayAll(){

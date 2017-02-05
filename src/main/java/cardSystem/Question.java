@@ -1,10 +1,5 @@
 package cardSystem;
 
-import javafx.beans.property.StringProperty;
-
-/**
- * Created by BellPC on 18.01.2017.
- */
 public class Question {
     private String question;
     private String answer = "";
@@ -50,6 +45,15 @@ public class Question {
 
     public void setTip(String tip) {
         this.tip = tip;
+    }
+
+    @Override
+    protected Question clone() throws CloneNotSupportedException {
+        return new Question(
+                new String(this.question),
+                new String(this.answer),
+                new String(this.tip)
+        );
     }
 
     @Override

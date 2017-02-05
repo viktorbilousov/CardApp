@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.play.PlayStageController">
+   <children>
+      <Label fx:id="themeLabel" layoutX="272.0" layoutY="121.0" text="Theme" />
+      <Label fx:id="questionLabel" layoutX="272.0" layoutY="151.0" text="Quesion" />
+      <Label fx:id="tipLabel" layoutX="286.0" layoutY="183.0" text="Tip" />
+      <Button fx:id="startAndStopBtn" layoutX="98.0" layoutY="345.0" mnemonicParsing="false" onAction="#startAndStopButton" text="Start And Stop " />
+      <Button fx:id="dontKnowAnswerBtn" layoutX="332.0" layoutY="279.0" mnemonicParsing="false" onAction="#dontKnowAnswerButton" text="I don`t know " />
+      <Button fx:id="tipBtn" layoutX="229.0" layoutY="279.0" mnemonicParsing="false" onAction="#showTipButton" text="Show Tip" />
+      <Button fx:id="knowAnswerBtn" layoutX="100.0" layoutY="279.0" mnemonicParsing="false" onAction="#knowAnswerButton" text="I know answer" />
+      <Label fx:id="numberCardLabel" layoutX="60.0" layoutY="60.0" text="Numer of Card" />
+      <Label fx:id="timerLabel" layoutX="78.0" layoutY="113.0" text="Timer" />
+      <Button fx:id="pauseBtn" layoutX="238.0" layoutY="345.0" mnemonicParsing="false" onAction="#pauseButton" text="Pause" />
+      <Label fx:id="answerLabel" layoutX="275.0" layoutY="217.0" text="Answer" />
+      <Button fx:id="nextBtn" layoutX="352.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextButton" text="Next" />
+   </children>
+</AnchorPane>

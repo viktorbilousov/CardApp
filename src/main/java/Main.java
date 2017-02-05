@@ -1,10 +1,12 @@
 import application.MainApp;
-import cardSystem.CardSystem;
-import cardSystem.Theme;
+import cardSystem.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import javax.smartcardio.Card;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main extends Application {
     static MainApp mainApp = null;
@@ -14,10 +16,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        CardSystem system = new CardSystem();
-        system.loadDefPar();
-       // system.displayAll();
-        mainApp = new MainApp(system);
+        mainApp = new MainApp();
         launch(args);
 
     }

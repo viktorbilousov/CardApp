@@ -35,6 +35,14 @@ public class Theme {
         this.questionsList.add(question);
     }
 
+    @Override
+    protected Theme clone() throws CloneNotSupportedException {
+        Theme cloneTheme = new Theme(new String(themeName));
+        for (Question question : questionsList) {
+            cloneTheme.addQuestion(question.clone());
+        }
+        return cloneTheme;
+    }
 
     @Override
     public boolean equals(Object obj) {

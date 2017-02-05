@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.play.StartPlayStageController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableView" editable="true" prefHeight="325.0" prefWidth="593.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="11.0">
+               <columns>
+                  <TableColumn fx:id="ThemesTable" prefWidth="271.0" text="Theme" />
+                  <TableColumn fx:id="checkTable" prefWidth="319.0" text="Check" />
+               </columns>
+            </TableView>
+            <Button layoutX="335.0" layoutY="339.0" mnemonicParsing="false" onAction="#startButton" text="Start" />
+            <Button layoutX="182.0" layoutY="339.0" mnemonicParsing="false" onAction="#closeButton" text="Close" />
+            <Button layoutX="387.0" layoutY="304.0" mnemonicParsing="false" onAction="#selectAllButton" prefHeight="25.0" prefWidth="77.0" text="Select all" />
+            <Button layoutX="481.0" layoutY="304.0" mnemonicParsing="false" onAction="#deselectAllButton" text="Deselect all" />
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#settingMenu" text="Setting" />
+              <MenuItem mnemonicParsing="false" onAction="#exitMenu" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#openEditMenu" text="Open Edit Menu" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

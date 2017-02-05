@@ -1,6 +1,6 @@
 package application;
 
-import application.model.stageModels.RootStageStageModel;
+import application.model.edit.stageModels.RootStageModel;
 import cardSystem.CardSystem;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -10,34 +10,22 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    private CardSystem cardSystem;
-
     private Stage primaryStage = null;
-    private RootStageStageModel rootStageStageModel;
-
-
-    public MainApp(CardSystem cardSystem) {
-        this.cardSystem = cardSystem;
-    }
-
-    public CardSystem getCardSystem() {
-        return cardSystem;
-    }
+    private RootStageModel rootStageModel;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Card System");
         initialize();
-       rootStageStageModel.show();
+       rootStageModel.show();
     }
     private void initialize() {
-        rootStageStageModel = new RootStageStageModel(
-                primaryStage,
-                null,
-                MainApp.class.getResource("../fxml/StageRoot.fxml"),
-                cardSystem
-        );
+       rootStageModel = new RootStageModel(
+               primaryStage,
+               null,
+               MainApp.class.getResource("../fxml/edit/StageRoot.fxml")
+       );
     }
 
 }

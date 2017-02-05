@@ -2,6 +2,8 @@ package application.cardSystemProperty;
 
 import cardSystem.Question;
 import cardSystem.Theme;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -11,6 +13,7 @@ import javafx.util.StringConverter;
 public class ThemeProperty{
 
     private StringProperty themeName;
+    private BooleanProperty isCheck = new SimpleBooleanProperty(false);
     private ObservableList<QuestionProperty> questionProperiesList;
 
     public ThemeProperty(Theme theme) {
@@ -20,6 +23,18 @@ public class ThemeProperty{
         for(Question question : theme.getQuestionsList()){
             questionProperiesList.add(new QuestionProperty(question));
         }
+    }
+
+    public boolean isIsCheck() {
+        return isCheck.get();
+    }
+
+    public BooleanProperty isCheckProperty() {
+        return isCheck;
+    }
+
+    public void setIsCheck(boolean isCheck) {
+        this.isCheck.set(isCheck);
     }
 
     public String getThemeName() {

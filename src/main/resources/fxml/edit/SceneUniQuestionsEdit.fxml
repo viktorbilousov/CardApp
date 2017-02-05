@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.edit.UniQuestionEditController">
+    <children>
+        <TableView fx:id="tableView" editable="true" layoutX="23.0" layoutY="34.0" prefHeight="282.0" prefWidth="558.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="34.0">
+            <columns>
+            <TableColumn fx:id="deleteColumn" editable="false" prefWidth="29.0" sortable="false" text="Delete" />
+                <TableColumn fx:id="questionColumn" prefWidth="523.0" text="Universal Question" />
+            </columns>
+        </TableView>
+        <Button layoutX="300.0" layoutY="339.0" mnemonicParsing="false" onAction="#addButton" text="Add" />
+        <Button layoutX="209.0" layoutY="339.0" mnemonicParsing="false" onAction="#okButton" text="Ok" />
+    </children>
+</AnchorPane>
