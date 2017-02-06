@@ -19,5 +19,6 @@
       <Button fx:id="pauseBtn" layoutX="238.0" layoutY="345.0" mnemonicParsing="false" onAction="#pauseButton" text="Pause" />
       <Label fx:id="answerLabel" layoutX="275.0" layoutY="217.0" text="Answer" />
       <Button fx:id="nextBtn" layoutX="352.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextButton" text="Next" />
+      <Button fx:id="statisticBtn" disable="true" layoutX="472.0" layoutY="333.0" mnemonicParsing="false" onAction="#openStatisticButton" text="Statictic" />
    </children>
 </AnchorPane>

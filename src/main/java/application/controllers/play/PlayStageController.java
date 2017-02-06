@@ -19,6 +19,8 @@ import java.util.Iterator;
 public class PlayStageController implements Controller {
 
     @FXML
+    private Button statisticBtn;
+    @FXML
     private Button tipBtn;
     @FXML
     private Button dontKnowAnswerBtn;
@@ -42,6 +44,8 @@ public class PlayStageController implements Controller {
     private Label timerLabel;
     @FXML
     private Label answerLabel;
+
+
 
     enum PlayState{
         PLAYING,
@@ -76,7 +80,6 @@ public class PlayStageController implements Controller {
     public void enableTimer(int timeTimer) {
         this.isTimerOn = true;
         this.timerTime = timeTimer;
-       // pauseBtn.setDisable(false);
     }
     public void disableTimer(){
         this.isTimerOn = false;
@@ -85,13 +88,14 @@ public class PlayStageController implements Controller {
         pauseBtn.setDisable(true);
     }
 
+
     @Override
     public void initialize() {
-
         changeStateToStop();
         nextBtn.setDisable(true);
         clearLabels();
         numberCardLabel.setText("0/0");
+        statisticBtn.setDisable(true);
         timer = new Timeline();
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.getKeyFrames().add(
@@ -100,7 +104,7 @@ public class PlayStageController implements Controller {
                         event -> tick()
                 )
         );
-         disableTimer();
+        disableTimer();
     }
 
     @Override
@@ -114,6 +118,7 @@ public class PlayStageController implements Controller {
     }
 
     private void tick(){
+        System.out.println("tick");
         if(downCounter == 0){
             dontKnowAnswerButton();
         }else {
@@ -125,23 +130,28 @@ public class PlayStageController implements Controller {
     private void setTimerLabel(String time){
         timerLabel.setText("timer: " + time);
     }
+
     private void clearLabels(){
         questionLabel.setText("");
         tipLabel.setText("");
         themeLabel.setText("");
         answerLabel.setText("");
     }
+
     private void clearTipAndAnswerLabels(){
         tipLabel.setText("");
         answerLabel.setText("");
     }
+
     private void showThemeAndQuestionTextLabels(){
         themeLabel.setText(currentThemeName);
         questionLabel.setText(currentQuestion.getQuestion());
     }
+
     private void showTipLabel(){
         tipLabel.setText(currentQuestion.getTip());
     }
+
     private void showAnswerLabel(){
         answerLabel.setText(currentQuestion.getAnswer());
     }
@@ -168,6 +178,7 @@ public class PlayStageController implements Controller {
                 state = changeState;
                 setDisableAnswerBnts(false);
                 tipBtn.setDisable(false);
+                statisticBtn.setDisable(true);
                 startAndStopBtn.setText("Stop");
                 isClickTipButton = false;
                 player.reset();
@@ -217,19 +228,21 @@ public class PlayStageController implements Controller {
         }
 
     }
+
     private void changeStateToStop(){
         if(player != null) {
             notAnswerQuestions = player.stopAndGetNotAnsteredThemesList();
-            notAnswerQuestions.forEach(theme -> {
+           /* notAnswerQuestions.forEach(theme -> {
                 System.out.println(theme);
                 theme.getQuestionsList().forEach(question -> System.out.println(question));
                 System.out.println();
-            });
+            });*/
         }
         state = PlayState.STOP;
         setDisableAnswerBnts(true);
         tipBtn.setDisable(true);
         pauseBtn.setDisable(true);
+        statisticBtn.setDisable(false);
         startAndStopBtn.setText("Start");
         isClickTipButton = false;
         if(this.isTimerOn) {
@@ -243,6 +256,7 @@ public class PlayStageController implements Controller {
         itemsCounter++ ;
         numberCardLabel.setText(itemsCounter.toString() + "/" + player.size().toString() );
     }
+
     private void resetCounterLabel(){
         itemsCounter = 0;
         numberCardLabel.setText(itemsCounter.toString() + "/" + player.size().toString() );
@@ -264,7 +278,6 @@ public class PlayStageController implements Controller {
             return;
         }
     }
-
     @FXML
     private void dontKnowAnswerButton() {
         player.setAnswerState(false);
@@ -273,15 +286,14 @@ public class PlayStageController implements Controller {
         setDisableAnswerBnts(true);
         showAnswerLabel();
         showTipButton();
-        timer.pause();
+        if(isTimerOn)
+            timer.pause();
     }
-
     @FXML
     private void showTipButton() {
         isClickTipButton = true;
         showTipLabel();
     }
-
     @FXML
     private void knowAnswerButton() {
         player.setAnswerState(true);
@@ -290,9 +302,9 @@ public class PlayStageController implements Controller {
         setDisableAnswerBnts(true);
         showAnswerLabel();
         showTipButton();
-        timer.pause();
+        if(isTimerOn)
+            timer.pause();
     }
-
     @FXML
     private void pauseButton() {
         if(state == PlayState.PLAYING) {
@@ -304,7 +316,6 @@ public class PlayStageController implements Controller {
             return;
         }
     }
-
     @FXML
     private void nextButton() {
         isClickTipButton = false;
@@ -315,9 +326,14 @@ public class PlayStageController implements Controller {
 
         nextBtn.setDisable(true);
         clearTipAndAnswerLabels();
-        timer.play();
+        if(isTimerOn)
+            timer.play();
         showNextQuestion();
 
+    }
+    @FXML
+    private void openStatisticButton() {
+        myModel.openStatistic(player.getInputThemesList(), player.getNotAnsweredThemesList());
     }
 }
 

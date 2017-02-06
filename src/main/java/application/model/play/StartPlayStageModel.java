@@ -70,7 +70,8 @@ public class StartPlayStageModel extends StageModel {
         playSettingModel.show();
     }
 
-    public void closeAndOpenPlayStage(){
+
+    public void closeAndOpenPlayStage(ArrayList<Theme> themesList){
         close();
         System.out.println("shuffle: " + isShuffle);
         System.out.println("timer: " + enableTimer);
@@ -79,7 +80,7 @@ public class StartPlayStageModel extends StageModel {
         if(enableTimer)     playStageModel.enableTimer(timerCountdown);
         else                playStageModel.disableTimer();
 
-        playStageModel.setData(myController.getChekedThemesList(), isShuffle);
+        playStageModel.setData(themesList, isShuffle);
         playStageModel.show();
     }
 

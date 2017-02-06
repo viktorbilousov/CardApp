@@ -4,6 +4,7 @@ import application.cardSystemProperty.ThemeProperty;
 import application.controllers.Controller;
 import application.model.Model;
 import application.model.play.StartPlayStageModel;
+import application.util.StageUtil;
 import cardSystem.Theme;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,7 +32,6 @@ public class StartPlayStageController implements Controller {
     private StartPlayStageModel myModel ;
     private ArrayList<Theme> themeArrayList;
     private ObservableList<ThemeProperty> observableList = FXCollections.observableArrayList();
-    private boolean needShuffle = false;
 
     public ArrayList<Theme> getChekedThemesList(){
         ArrayList<Theme> output = new ArrayList<>();
@@ -48,8 +48,6 @@ public class StartPlayStageController implements Controller {
         this.themeArrayList = themeArrayList;
         updateElementsData();
     }
-
-
 
     @Override
     public void initialize() {
@@ -75,7 +73,7 @@ public class StartPlayStageController implements Controller {
 
     @FXML
     private void startButton() {
-        myModel.closeAndOpenPlayStage();
+        myModel.closeAndOpenPlayStage(getChekedThemesList());
     }
 
     @FXML
@@ -109,5 +107,10 @@ public class StartPlayStageController implements Controller {
     @FXML
     private void openEditMenu() {
         myModel.closeAndOpenParent();
+    }
+
+    @FXML
+    private void openAbout() {
+        StageUtil.showAboutMessage();
     }
 }

@@ -3,6 +3,7 @@ package application.controllers.edit;
 import application.controllers.Controller;
 import application.model.Model;
 import application.model.edit.stageModels.RootStageModel;
+import application.util.StageUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
@@ -19,9 +20,7 @@ public class RootStageController implements Controller {
 
     @Override
     public void updateElementsData() {
-
     }
-
 
     @Override
     public void setMyModel(Model model) {
@@ -48,4 +47,8 @@ public class RootStageController implements Controller {
         myModel.showPlaySettingStage();
     }
 
+    @FXML
+    private void openAbout() {
+        StageUtil.showAboutMessage();
+    }
 }
