@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.play.StatisticStageController">
+   <children>
+      <TableView fx:id="tableView" layoutX="59.0" layoutY="43.0" prefHeight="252.0" prefWidth="457.0">
+        <columns>
+          <TableColumn fx:id="themesCol" prefWidth="230.0" text="Themes" />
+          <TableColumn fx:id="statisticCol" prefWidth="219.0" text="Statistic" />
+        </columns>
+      </TableView>
+      <Button layoutX="82.0" layoutY="338.0" mnemonicParsing="false" onAction="#playAgainHandler" text="Play again" />
+      <Button layoutX="416.0" layoutY="339.0" mnemonicParsing="false" onAction="#finishHandler" text="Finish" />
+      <Button fx:id="playNextBnt" layoutX="269.0" layoutY="339.0" mnemonicParsing="false" onAction="#playHandler" text="Play" />
+   </children>
+</AnchorPane>
