@@ -43,6 +43,15 @@ public class RootStageModel extends StageModel {
         if(file != null) loadSystemFromFile(file);
         else  newSystem();
 
+        getPrimaryStage().setOnCloseRequest(event -> {
+            File openFile  = systemStream.getLastLoadFilePath();
+            if(openFile != null && !isNew){
+                saveSystemToFile(openFile);
+            }
+        });
+
+        getPrimaryStage().setMinHeight(450);
+        getPrimaryStage().setMinWidth(600);
         showViewThemes();
     }
 

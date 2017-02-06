@@ -9,6 +9,7 @@ import cardSystem.Question;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,10 +19,13 @@ import java.util.ArrayList;
 public class QuestionsViewSceneController implements Controller {
 
 
+
     private ArrayList<Question> questions;
     private ObservableList<QuestionProperty> questionProperties = FXCollections.observableArrayList();
     private QuestionsViewSceneModel myModel;
 
+    @FXML
+    private Button editBtn;
     @FXML
     private TableView<QuestionProperty> questionTableView;
     @FXML
@@ -38,6 +42,7 @@ public class QuestionsViewSceneController implements Controller {
         questionColumn.setCellValueFactory(data -> data.getValue().questionPropertyProperty());
         answerColumn.setCellValueFactory(data -> data.getValue().answerPropertyProperty());
         tipColumn.setCellValueFactory(data -> data.getValue().tipPropertyProperty());
+
     }
 
     public ArrayList<Question> getQuestionsList() {

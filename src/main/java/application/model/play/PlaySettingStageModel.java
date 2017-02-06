@@ -14,6 +14,7 @@ public class PlaySettingStageModel extends StageModel {
 
     public PlaySettingStageModel(Stage primaryStage, Model parent, URL FXMLLocation) {
         super(primaryStage, parent, FXMLLocation);
+        getPrimaryStage().setResizable(false);
 
     }
 

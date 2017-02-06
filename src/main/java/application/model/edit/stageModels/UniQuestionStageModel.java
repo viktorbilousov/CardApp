@@ -20,6 +20,8 @@ public class UniQuestionStageModel extends StageModel {
     public UniQuestionStageModel(Stage primaryStage, Model parent, URL FXMLLocation) {
         super(primaryStage, parent, FXMLLocation);
         init();
+        getPrimaryStage().setMinHeight(465);
+        getPrimaryStage().setMinWidth(600);
      //   showCheckUniQuestion();
     }
 

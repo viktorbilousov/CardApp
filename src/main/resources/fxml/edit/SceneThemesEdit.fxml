@@ -5,15 +5,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.edit.ThemesEditSceneController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.edit.ThemesEditSceneController">
     <children>
-        <TableView fx:id="themeTableView" editable="true" layoutX="35.0" layoutY="14.0" prefHeight="319.0" prefWidth="528.0">
+        <TableView fx:id="themeTableView" editable="true" layoutX="35.0" layoutY="14.0" prefHeight="319.0" prefWidth="528.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="14.0">
             <columns>
-            <TableColumn fx:id="deleteColumn" prefWidth="126.0" text="Delete" />
-                <TableColumn fx:id="themesColumn" prefWidth="396.0" text="Themes" />
+            <TableColumn fx:id="deleteColumn" prefWidth="52.0" text="Delete" />
+                <TableColumn fx:id="themesColumn" prefWidth="470.0" text="Themes" />
             </columns>
         </TableView>
-      <Button layoutX="218.0" layoutY="343.0" mnemonicParsing="false" onAction="#okButton" prefHeight="25.0" prefWidth="97.0" text="Ok" />
-      <Button layoutX="377.0" layoutY="343.0" mnemonicParsing="false" onAction="#addButton" prefHeight="25.0" prefWidth="97.0" text="Add" />
+      <Button layoutX="376.0" layoutY="361.0" mnemonicParsing="false" onAction="#okButton" prefHeight="25.0" prefWidth="80.0" text="Ok" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="160.0" />
+      <Button layoutX="158.0" layoutY="361.0" mnemonicParsing="false" onAction="#addButton" prefHeight="25.0" prefWidth="80.0" text="Add" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="160.0" />
     </children>
 </AnchorPane>

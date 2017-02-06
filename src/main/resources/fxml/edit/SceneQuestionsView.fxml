@@ -6,23 +6,23 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.edit.QuestionsViewSceneController">
+<AnchorPane prefHeight="440.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.edit.QuestionsViewSceneController">
     <children>
-        <TableView fx:id="questionTableView" editable="true" layoutX="17.0" layoutY="47.0" prefHeight="294.0" prefWidth="575.0">
+        <TableView fx:id="questionTableView" editable="true" layoutX="25.0" layoutY="46.0" prefHeight="294.0" prefWidth="550.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="30.0">
             <columns>
                 <TableColumn fx:id="questionColumn" prefWidth="120.0" text="Question" />
                 <TableColumn fx:id="tipColumn" prefWidth="156.0" text="Tip" />
             <TableColumn fx:id="answerColumn" prefWidth="298.0" text="Answer" />
             </columns>
         </TableView>
-        <Button layoutX="279.0" layoutY="355.0" mnemonicParsing="false" onAction="#editButton" prefWidth="51.0" text="Edit" />
-      <Button layoutX="492.0" layoutY="355.0" mnemonicParsing="false" onAction="#backButton" prefWidth="51.0" text="Back " />
-      <Label fx:id="nameThemeLabel" layoutX="230.0" layoutY="14.0" text="TemaName" textAlignment="CENTER">
+        <Button fx:id="editBtn" layoutX="260.0" layoutY="399.0" maxHeight="25.0" maxWidth="80.0" mnemonicParsing="false" onAction="#editButton" prefHeight="25.0" prefWidth="80.0" text="Edit" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="259.0" />
+      <Button layoutX="463.0" layoutY="393.0" mnemonicParsing="false" onAction="#backButton" prefHeight="25.0" prefWidth="80.0" text="Back " AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="50.0" />
+      <Label fx:id="nameThemeLabel" alignment="CENTER" layoutX="235.0" layoutY="14.0" prefHeight="34.0" prefWidth="130.0" text="TemaName" textAlignment="CENTER" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="-10.0">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Button layoutX="43.0" layoutY="355.0" mnemonicParsing="false" onAction="#uniButton" prefWidth="51.0" text="Uni" />
+      <Button layoutX="49.0" layoutY="393.0" mnemonicParsing="false" onAction="#uniButton" prefHeight="25.0" prefWidth="80.0" text="Uni" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="50.0" />
     </children>
     <padding>
         <Insets top="20.0" />

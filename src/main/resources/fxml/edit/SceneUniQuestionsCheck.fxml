@@ -4,18 +4,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.edit.UniQuestionCheckController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.edit.UniQuestionCheckController">
    <children>
-      <TableView fx:id="tableView" editable="true" layoutX="7.0" layoutY="11.0" prefHeight="305.0" prefWidth="581.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="11.0">
+      <TableView fx:id="tableView" editable="true" layoutX="7.0" layoutY="21.0" prefHeight="295.0" prefWidth="581.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="30.0">
         <columns>
-          <TableColumn fx:id="questionTable" prefWidth="271.0" text="Theme" />
-          <TableColumn fx:id="checkTable" prefWidth="319.0" text="Check" />
+          <TableColumn fx:id="checkTable" prefWidth="53.0" text="Check" />
+          <TableColumn fx:id="questionTable" prefWidth="526.0" text="Theme" />
         </columns>
       </TableView>
-      <Button layoutX="416.0" layoutY="339.0" mnemonicParsing="false" onAction="#addButton" text="Add" />
-      <Button layoutX="483.0" layoutY="339.0" mnemonicParsing="false" onAction="#editButton" text="Edit" />
-      <Button layoutX="349.0" layoutY="339.0" mnemonicParsing="false" onAction="#closeButton" text="Close" />
-      <Button layoutX="36.0" layoutY="339.0" mnemonicParsing="false" onAction="#selectAllButton" prefHeight="25.0" prefWidth="77.0" text="Select all" />
-      <Button layoutX="139.0" layoutY="340.0" mnemonicParsing="false" onAction="#deselectAllButton" text="Deselect all" />
+      <Button layoutX="348.0" layoutY="339.0" mnemonicParsing="false" onAction="#addButton" prefWidth="80.0" text="Add" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="172.0" />
+      <Button layoutX="495.0" layoutY="359.0" mnemonicParsing="false" onAction="#editButton" prefWidth="80.0" text="Edit" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="25.0" />
+      <Button layoutX="248.0" layoutY="339.0" mnemonicParsing="false" onAction="#closeButton" prefWidth="80.0" text="Close" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="272.0" />
+      <Button layoutX="36.0" layoutY="339.0" mnemonicParsing="false" onAction="#selectAllButton" prefHeight="25.0" prefWidth="77.0" text="Select all" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="36.0" />
+      <Button layoutX="129.0" layoutY="339.0" mnemonicParsing="false" onAction="#deselectAllButton" text="Deselect all" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="129.0" />
    </children>
 </AnchorPane>

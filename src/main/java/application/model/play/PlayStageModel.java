@@ -26,6 +26,8 @@ public class PlayStageModel extends StageModel {
     public PlayStageModel(Stage primaryStage, Model parent, URL FXMLLocation) {
         super(primaryStage, parent, FXMLLocation);
         init();
+        getPrimaryStage().setMinHeight(700);
+        getPrimaryStage().setMinWidth(800);
     }
 
     private void init() {
