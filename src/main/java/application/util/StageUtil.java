@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public final class StageUtil {
-    public static void showAlertMessage(String title, String header, String context, Stage primaryStage){
+    public static void showAlertMessage(String title, String header, String context, Stage primaryStage) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initOwner(primaryStage);
         alert.setTitle(title);
@@ -19,13 +19,15 @@ public final class StageUtil {
         alert.showAndWait();
 
     }
-    public static Stage makeNewStage(String title, Stage primaryStage){
+
+    public static Stage makeNewStage(String title, Stage primaryStage) {
         Stage stage = new Stage();
         stage.setTitle(title);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(primaryStage);
         return stage;
     }
+
     public static File FileChooser(Stage rootStage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
@@ -34,7 +36,8 @@ public final class StageUtil {
                 new ExtensionFilter("All Files", "*.*"));
         return fileChooser.showOpenDialog(rootStage);
     }
-    public static File FileOpener(Stage rootStage){
+
+    public static File FileOpener(Stage rootStage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Resource File");
         fileChooser.getExtensionFilters().addAll(
@@ -45,6 +48,12 @@ public final class StageUtil {
 
     }
 
-
+    public static void showAboutMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("Card App v1.0");
+        alert.setContentText("Made by Viktor Belousov\nEmail: 17123vitek@gmail.com");
+        alert.showAndWait();
+    }
 
 }

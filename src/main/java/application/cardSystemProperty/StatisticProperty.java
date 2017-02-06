@@ -19,7 +19,7 @@ public class StatisticProperty {
         this.themeName = new SimpleStringProperty(themeName);
         statistic = new SimpleStringProperty(allThemesCnt - notAnswered + " / " + allThemesCnt);
     }
-    
+
     public String getThemeName() {
         return themeName.get();
     }
