@@ -11,6 +11,14 @@ public class ThemesCardPlayer implements Iterable<Question>{
     private ArrayList<Theme> notAnsweredThemesList = new ArrayList<>();
     private int cursor = 0;
 
+    public ArrayList<Theme> getInputThemesList() {
+        return inputThemesList;
+    }
+
+    public ArrayList<Theme> getNotAnsweredThemesList() {
+        return notAnsweredThemesList;
+    }
+
     public ThemesCardPlayer(ArrayList<Theme> inputThemesList, boolean needShuffleCards){
         this.inputThemesList = inputThemesList;
 
@@ -35,10 +43,12 @@ public class ThemesCardPlayer implements Iterable<Question>{
     public void setAnswerState(boolean isAnswered) {
         cards.get(cursor-1).setAnswered(isAnswered);
     }
+
     public ArrayList<Theme> stopAndGetNotAnsteredThemesList(){
         stopPlay();
         return notAnsweredThemesList;
     }
+
     public void stopPlay(){
         for(Card card : cards){
             if(!card.isAnswered()){
