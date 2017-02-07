@@ -3,6 +3,7 @@ package application.controllers.edit;
 import application.controllers.Controller;
 import application.model.Model;
 import application.model.edit.stageModels.RootStageModel;
+import application.model.edit.stageModels.SaveXMLSettingStageModel;
 import application.util.StageUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,6 @@ public class RootStageController implements Controller {
 
 
     RootStageModel myModel;
-
 
     @Override
     public void initialize() {
@@ -50,5 +50,9 @@ public class RootStageController implements Controller {
     @FXML
     private void openAbout() {
         StageUtil.showAboutMessage();
+    }
+
+    public void saveToExcel() {
+        myModel.showXMLSaveSetting();
     }
 }

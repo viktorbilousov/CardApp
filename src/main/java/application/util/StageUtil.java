@@ -10,6 +10,10 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public final class StageUtil {
+
+    public static ExtensionFilter XMLFiler =  new ExtensionFilter("XML Files", "*.xml");
+    public static ExtensionFilter XLSXFiler =  new ExtensionFilter("XLSX Files", "*.xlsx");
+
     public static void showAlertMessage(String title, String header, String context, Stage primaryStage) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initOwner(primaryStage);
@@ -28,22 +32,21 @@ public final class StageUtil {
         return stage;
     }
 
-    public static File FileChooser(Stage rootStage) {
+    public static File FileChooser(Stage rootStage, ExtensionFilter filter) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(
+        fileChooser.getExtensionFilters().addAll(filter);
+        /*
                 new ExtensionFilter("XML Files", "*.xml"),
-                new ExtensionFilter("All Files", "*.*"));
+                new ExtensionFilter("All Files", "*.*")*/
         return fileChooser.showOpenDialog(rootStage);
     }
 
-    public static File FileOpener(Stage rootStage) {
+    public static File FileOpener(Stage rootStage, ExtensionFilter filter) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Resource File");
-        fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter("XML Files", "*.xml"),
-                new ExtensionFilter("All Files", "*.*"));
-        fileChooser.setInitialFileName("file.xml");
+        fileChooser.getExtensionFilters().addAll(filter);
+        fileChooser.setInitialFileName("file");
         return fileChooser.showSaveDialog(rootStage);
 
     }

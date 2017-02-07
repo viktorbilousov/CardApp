@@ -80,7 +80,10 @@ public class CardSystem {
 
     public void displayAll(){
         System.out.println("\tTHEMES\t");
-        displayList(this.themeList);
+        themeList.forEach(theme -> {
+            System.out.println(theme.getThemeName() + ":");
+            theme.getQuestionsList().forEach(question -> System.out.println(question));
+        });
         System.out.println("\tUNIVERSAL QUESTION\t");
         displayList(this.universalQuestion);
     }

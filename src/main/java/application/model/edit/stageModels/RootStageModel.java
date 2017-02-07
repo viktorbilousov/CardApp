@@ -13,9 +13,11 @@ import cardSystem.CardSystem;
 import cardSystem.CardSystemStream;
 import cardSystem.Theme;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class RootStageModel extends StageModel {
@@ -24,6 +26,7 @@ public class RootStageModel extends StageModel {
     private QuestionsEditSceneModel editQuestionScene;
     private ThemesViewSceneModel viewThemesScene;
     private ThemesEditSceneModel editThemesScene;
+    private SaveXMLSettingStageModel saveXMLSetting;
 
     private StartPlayStageModel playStage;
 
@@ -90,6 +93,12 @@ public class RootStageModel extends StageModel {
                 this,
                 MainApp.class.getResource("../fxml/play/StartPlay.fxml")
         );
+        saveXMLSetting = new SaveXMLSettingStageModel(
+                StageUtil.makeNewStage("Save Excel File Setting",getPrimaryStage()),
+                this,
+                MainApp.class.getResource("../fxml/edit/SaveXLSXSetting.fxml"),
+                systemStream
+        );
 
     }
 
@@ -123,6 +132,9 @@ public class RootStageModel extends StageModel {
         editQuestionScene.updateData();
         editQuestionScene.show();
     }
+    public void showXMLSaveSetting(){
+        saveXMLSetting.show();
+    }
 
 
     public void saveSystemToOpenFile(){
@@ -134,10 +146,17 @@ public class RootStageModel extends StageModel {
         }
     }
     public void showOpenMenu(){
-        loadSystemFromFile(StageUtil.FileChooser(getPrimaryStage()));
+        loadSystemFromFile(StageUtil.FileChooser(getPrimaryStage(), StageUtil.XMLFiler ));
     }
     public void showSaveMenu(){
-        saveSystemToFile(StageUtil.FileOpener(getPrimaryStage()));
+        saveSystemToFile(StageUtil.FileOpener(getPrimaryStage(), StageUtil.XMLFiler));
+    }
+    public void showSaveToExcel(boolean writeAnswers, boolean writeTips) {
+        saveToXlmxFile(
+            StageUtil.FileOpener(getPrimaryStage(), StageUtil.XLSXFiler).getPath(),
+            writeAnswers,
+            writeTips
+        );
     }
 
     private void saveSystemToFile(File file){
@@ -151,6 +170,14 @@ public class RootStageModel extends StageModel {
         viewThemesScene.setThemeList(system.getThemeList());
         editThemesScene.setThemesList(system.getThemeList());
         updateData();
+    }
+    private void saveToXlmxFile(String path, boolean writeAnswers,boolean writeTips ){
+        try {
+            systemStream.saveCardsToXLSXFile(path, writeAnswers, writeTips);
+        } catch (IOException e) {
+            StageUtil.showAlertMessage("Error", "Error save to Excel file",
+                    e.getMessage(), getPrimaryStage());
+        }
     }
 
     public void showPlaySettingStage(){

@@ -19,6 +19,7 @@
               <MenuItem mnemonicParsing="false" onAction="#onMenuOpen" text="Open" />
                   <MenuItem mnemonicParsing="false" onAction="#onMenuSave" text="Save" />
                   <MenuItem mnemonicParsing="false" onAction="#onMenuSaveAs" text="Save as..." />
+                  <MenuItem mnemonicParsing="false" onAction="#saveToExcel" text="Save to excel" />
                   <MenuItem mnemonicParsing="false" onAction="#onMenuExit" text="Exit" />
             </items>
           </Menu>

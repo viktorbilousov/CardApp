@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="263.0" maxWidth="388.0" minHeight="220.0" minWidth="273.0" prefHeight="220.0" prefWidth="273.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.edit.SaveXMLSettingStageController">
+   <children>
+      <CheckBox fx:id="answerCheck" layoutX="51.0" layoutY="107.0" mnemonicParsing="false" text="Answers" />
+      <CheckBox fx:id="tipsCheck" layoutX="162.0" layoutY="107.0" mnemonicParsing="false" text="Tips" />
+      <Button layoutX="51.0" layoutY="161.0" mnemonicParsing="false" onAction="#okBtnAction" prefWidth="60.0" text="Save" />
+      <Button layoutX="162.0" layoutY="161.0" mnemonicParsing="false" onAction="#cancelBtnAction" prefWidth="60.0" text="Cancel" />
+      <Label layoutX="72.0" layoutY="49.0" text="Save in second sheet:  ">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
