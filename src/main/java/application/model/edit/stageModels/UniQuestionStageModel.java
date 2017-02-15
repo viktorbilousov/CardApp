@@ -29,12 +29,12 @@ public class UniQuestionStageModel extends StageModel {
         checkUniQuestion = new UniQuestionsCheckSceneModel(
                 (BorderPane) getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/edit/SceneUniQuestionsCheck.fxml")
+                MainApp.class.getResource("/fxml/edit/SceneUniQuestionsCheck.fxml")
         );
         editUniQuestion = new UniQuestionsEditSceneModel(
                 (BorderPane)getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/edit/SceneUniQuestionsEdit.fxml")
+                MainApp.class.getResource("/fxml/edit/SceneUniQuestionsEdit.fxml")
         );
 
     }

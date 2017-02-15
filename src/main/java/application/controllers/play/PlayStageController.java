@@ -11,15 +11,18 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class PlayStageController implements Controller {
 
-    @FXML
-    private Button statisticBtn;
     @FXML
     private Button tipBtn;
     @FXML
@@ -71,6 +74,7 @@ public class PlayStageController implements Controller {
     private final static int TICK_MSECONDS = 1000;
     private Integer downCounter = 0;
     private Integer timerTime = 0;
+    private final int redColorTimer = 3;
 
     public void setPlayer(ThemesCardPlayer player) {
         this.player = player;
@@ -95,7 +99,6 @@ public class PlayStageController implements Controller {
         nextBtn.setDisable(true);
         clearLabels();
         numberCardLabel.setText("0/0");
-        statisticBtn.setDisable(true);
         timer = new Timeline();
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.getKeyFrames().add(
@@ -123,12 +126,17 @@ public class PlayStageController implements Controller {
             dontKnowAnswerButton();
         }else {
             downCounter --;
-            setTimerLabel(downCounter.toString());
+            setTimerLabel();
         }
     }
 
-    private void setTimerLabel(String time){
-        timerLabel.setText("timer: " + time);
+    private void setTimerLabel(){
+        if(downCounter <= redColorTimer){
+            timerLabel.setTextFill(Color.RED);
+        }else {
+            timerLabel.setTextFill(Color.BLACK);
+        }
+        timerLabel.setText("timer: " + downCounter);
     }
 
     private void clearLabels(){
@@ -162,7 +170,7 @@ public class PlayStageController implements Controller {
             return;
         }
         downCounter = timerTime;
-        setTimerLabel(downCounter.toString());
+        setTimerLabel();
         currentQuestion = playerIterator.next();
         currentThemeName = player.getQuestionTheme(currentQuestion);
         showThemeAndQuestionTextLabels();
@@ -178,15 +186,16 @@ public class PlayStageController implements Controller {
                 state = changeState;
                 setDisableAnswerBnts(false);
                 tipBtn.setDisable(false);
-                statisticBtn.setDisable(true);
                 startAndStopBtn.setText("Stop");
+                nextBtn.setText("Next");
+               // nextBtn.setDisable(false);
                 isClickTipButton = false;
                 player.reset();
                 resetCounterLabel();
                 if(this.isTimerOn) {
                     timer.play();
                     pauseBtn.setDisable(false);
-                    setTimerLabel(downCounter.toString());
+                    setTimerLabel();
                 }
                 showNextQuestion();
                 return;
@@ -221,7 +230,7 @@ public class PlayStageController implements Controller {
                 state = changeState;
                 if(this.isTimerOn) {
                     timer.play();
-                    setTimerLabel(downCounter.toString());
+                    setTimerLabel();
                 }
                 return;
             }
@@ -232,22 +241,19 @@ public class PlayStageController implements Controller {
     private void changeStateToStop(){
         if(player != null) {
             notAnswerQuestions = player.stopAndGetNotAnsteredThemesList();
-           /* notAnswerQuestions.forEach(theme -> {
-                System.out.println(theme);
-                theme.getQuestionsList().forEach(question -> System.out.println(question));
-                System.out.println();
-            });*/
         }
         state = PlayState.STOP;
         setDisableAnswerBnts(true);
         tipBtn.setDisable(true);
         pauseBtn.setDisable(true);
-        statisticBtn.setDisable(false);
         startAndStopBtn.setText("Start");
         isClickTipButton = false;
+        nextBtn.setText("Statistic");
+        nextBtn.setFont(Font.font("System", FontWeight.BOLD, 18));
+        nextBtn.setDisable(false);
         if(this.isTimerOn) {
             timer.stop();
-            setTimerLabel("off");
+            timerLabel.setText("off");
         }
         timerTime = 0;
     }
@@ -318,22 +324,28 @@ public class PlayStageController implements Controller {
     }
     @FXML
     private void nextButton() {
-        isClickTipButton = false;
-        setDisableAnswerBnts(false);
 
-        if(isTimerOn)
-            pauseBtn.setDisable(false);
+        if(state == PlayState.PLAYING) {
+            isClickTipButton = false;
+            setDisableAnswerBnts(false);
 
-        nextBtn.setDisable(true);
-        clearTipAndAnswerLabels();
-        if(isTimerOn)
-            timer.play();
-        showNextQuestion();
+            if (isTimerOn)
+                pauseBtn.setDisable(false);
 
+            nextBtn.setDisable(true);
+            clearTipAndAnswerLabels();
+            if (isTimerOn)
+                timer.play();
+            showNextQuestion();
+        }
+        else if (state == PlayState.STOP){
+            openStatisticButton();
+        }
     }
     @FXML
     private void openStatisticButton() {
         myModel.openStatistic(player.getInputThemesList(), player.getNotAnsweredThemesList());
+        nextBtn.setDisable(true);
     }
 }
 

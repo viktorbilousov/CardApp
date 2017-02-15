@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class StageModel implements Model {
             isRootStage = true;
 
         init(FXMLLocation);
+        this.getPrimaryStage().getIcons().add(new Image("icon.png"));
     }
 
     public void init(URL pathToFXML){

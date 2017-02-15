@@ -41,13 +41,13 @@ public class QuestionsViewSceneModel extends SceneModel {
         addQuestionModel = new QuestionAddStageModel(
                 StageUtil.makeNewStage("Question", rootStageModel.getPrimaryStage()),
                 this,
-                MainApp.class.getResource("../fxml/edit/StageQuestionAdd.fxml")
+                MainApp.class.getResource("/fxml/edit/StageQuestionAdd.fxml")
         );
 
         uniQuestionStageModel = new UniQuestionStageModel(
                 StageUtil.makeNewStage("Universal Question", rootStageModel.getPrimaryStage()),
                 this,
-                MainApp.class.getResource("../fxml/edit/StageUniQuestion.fxml")
+                MainApp.class.getResource("/fxml/edit/StageUniQuestion.fxml")
         );
 
 

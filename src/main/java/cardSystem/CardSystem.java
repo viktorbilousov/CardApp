@@ -88,6 +88,14 @@ public class CardSystem {
         displayList(this.universalQuestion);
     }
 
+    @Override
+    public String toString() {
+        return "CardSystem{" +
+                "themeList=" + themeList.size() +
+                ", universalQuestion=" + universalQuestion.size() +
+                '}';
+    }
+
     public void loadDefPar(){
         Theme firstTheme = new Theme("First theme");
         firstTheme.addQuestion(new Question("question11" , "answer11", "tip11"));

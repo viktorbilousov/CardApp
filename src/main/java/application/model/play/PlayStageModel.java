@@ -34,7 +34,7 @@ public class PlayStageModel extends StageModel {
         statisticModel = new StatisticStageModel(
                 StageUtil.makeNewStage("Statistic", getPrimaryStage()),
                 this,
-                MainApp.class.getResource("../fxml/play/Statistic.fxml")
+                MainApp.class.getResource("/fxml/play/Statistic.fxml")
         );
     }
     public void openStatistic(ArrayList<Theme> allThemes, ArrayList<Theme> notAnswered){

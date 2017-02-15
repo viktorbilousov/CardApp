@@ -2,12 +2,15 @@ package application.util;
 
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public final class StageUtil {
 
@@ -56,6 +59,44 @@ public final class StageUtil {
         alert.setTitle("About");
         alert.setHeaderText("Card App v1.0");
         alert.setContentText("Made by Viktor Belousov\nEmail: 17123vitek@gmail.com");
+        alert.showAndWait();
+    }
+    public static void showExceptionDialog(Exception e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle("Exception Dialog");
+        alert.setHeaderText("An error occurred:");
+
+        String content = "Error: ";
+        if (null != e) {
+            content += e.toString() + "\n\n";
+        }
+
+        alert.setContentText(content);
+
+        Exception ex = new Exception(e);
+
+        //Create expandable Exception.
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        ex.printStackTrace(pw);
+
+        String exceptionText = sw.toString();
+
+        //Set up TextArea
+        TextArea textArea = new TextArea(exceptionText);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+
+
+        textArea.setPrefHeight(600);
+        textArea.setPrefWidth(800);
+
+
+        //Set expandable Exception into the dialog pane.
+        alert.getDialogPane().setExpandableContent(textArea);
+
+
         alert.showAndWait();
     }
 

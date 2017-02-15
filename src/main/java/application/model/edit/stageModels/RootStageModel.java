@@ -12,6 +12,8 @@ import application.util.StageUtil;
 import cardSystem.CardSystem;
 import cardSystem.CardSystemStream;
 import cardSystem.Theme;
+import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -38,12 +40,15 @@ public class RootStageModel extends StageModel {
 
     public RootStageModel(Stage primaryStage, StageModel parent, URL FXMLLOcation){
         super(primaryStage,parent,FXMLLOcation);
+
         system = new CardSystem();
         systemStream = new CardSystemStream(system);
+
         init();
+        newSystem();
         File file = systemStream.getLastLoadFilePath();
 
-        if(file != null) loadSystemFromFile(file);
+      if(file != null) loadSystemFromFile(file);
         else  newSystem();
 
         getPrimaryStage().setOnCloseRequest(event -> {
@@ -66,37 +71,37 @@ public class RootStageModel extends StageModel {
         viewQuestionScene = new QuestionsViewSceneModel(
                 (BorderPane) getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/edit/SceneQuestionsView.fxml")
+                MainApp.class.getResource("/fxml/edit/SceneQuestionsView.fxml")
         );
         viewThemesScene = new ThemesViewSceneModel(
                 (BorderPane)getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/edit/SceneThemesView.fxml")
+                MainApp.class.getResource("/fxml/edit/SceneThemesView.fxml")
         );
         viewThemesScene.setThemeList(system.getThemeList());
 
         editThemesScene = new ThemesEditSceneModel(
                 (BorderPane) getRootLayout(),
                 this,
-                MainApp.class.getResource("../fxml/edit/SceneThemesEdit.fxml")
+                MainApp.class.getResource("/fxml/edit/SceneThemesEdit.fxml")
         );
         editThemesScene.setThemesList(system.getThemeList());
 
         editQuestionScene = new QuestionsEditSceneModel(
                 (BorderPane)rootLayout,
                 this,
-                MainApp.class.getResource("../fxml/edit/SceneQuestionsEdit.fxml")
+                MainApp.class.getResource("/fxml/edit/SceneQuestionsEdit.fxml")
         );
 
         playStage = new StartPlayStageModel(
                 StageUtil.makeNewStage("Play Setting", getPrimaryStage()),
                 this,
-                MainApp.class.getResource("../fxml/play/StartPlay.fxml")
+                MainApp.class.getResource("/fxml/play/StartPlay.fxml")
         );
         saveXMLSetting = new SaveXMLSettingStageModel(
                 StageUtil.makeNewStage("Save Excel File Setting",getPrimaryStage()),
                 this,
-                MainApp.class.getResource("../fxml/edit/SaveXLSXSetting.fxml"),
+                MainApp.class.getResource("/fxml/edit/SaveXLSXSetting.fxml"),
                 systemStream
         );
 
@@ -106,8 +111,12 @@ public class RootStageModel extends StageModel {
         isNew = true;
         getPrimaryStage().setTitle(AppName + " - New Data");
         system.getThemeList().clear();
-        viewThemesScene.updateData();
-        editQuestionScene.updateData();
+        try {
+            viewThemesScene.updateData();
+            editQuestionScene.updateData();
+        }catch (Exception e){
+            System.out.println(e);
+        }
         updateData();
 
     }
@@ -172,12 +181,12 @@ public class RootStageModel extends StageModel {
         updateData();
     }
     private void saveToXlmxFile(String path, boolean writeAnswers,boolean writeTips ){
-        try {
+        Platform.runLater(() -> { try {
             systemStream.saveCardsToXLSXFile(path, writeAnswers, writeTips);
         } catch (IOException e) {
             StageUtil.showAlertMessage("Error", "Error save to Excel file",
                     e.getMessage(), getPrimaryStage());
-        }
+        }});
     }
 
     public void showPlaySettingStage(){

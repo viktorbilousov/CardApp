@@ -14,8 +14,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DefaultStringConverter;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ThemesEditSceneController implements Controller {
 
@@ -39,14 +41,12 @@ public class ThemesEditSceneController implements Controller {
         updateElementsData();
     }
 
+    public void sayHi(){
+        System.out.println("hi");
+    }
+
     @Override
     public void initialize() {
-       /* themesColumn.setCellFactory(param ->
-        {
-            TextFieldTableCell tableCell = new TextFieldTableCell<ThemeProperty, String>();
-            tableCell.setConverter(ThemeProperty.getConverter());
-            return tableCell;
-        });*/
         themesColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         themesColumn.setCellValueFactory(param -> param.getValue().themeNameProperty());
 

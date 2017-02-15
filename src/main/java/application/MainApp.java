@@ -1,13 +1,11 @@
 package application;
 
 import application.model.edit.stageModels.RootStageModel;
-import cardSystem.CardSystem;
+import application.util.StageUtil;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
-/**
- * Created by BellPC on 20.01.2017.
- */
 public class MainApp extends Application {
 
     private Stage primaryStage = null;
@@ -15,17 +13,38 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        primaryStage.setTitle("Card System");
-        initialize();
-       rootStageModel.show();
+        System.out.println("start");
+        try {
+            this.primaryStage = primaryStage;
+            primaryStage.setTitle("Card System");
+         //   Platform.setImplicitExit(false);
+            initialize();
+            rootStageModel.show();
+        }catch (Exception e){
+            StageUtil.showExceptionDialog(e);
+        }
+        System.out.println("ok start");
     }
+
     private void initialize() {
-       rootStageModel = new RootStageModel(
+        System.out.println("start init");
+        rootStageModel = new RootStageModel(
                primaryStage,
                null,
-               MainApp.class.getResource("../fxml/edit/StageRoot.fxml")
+               MainApp.class.getResource("/fxml/edit/StageRoot.fxml")
        );
+        System.out.println("end init");
+
+    }
+
+    public static void main(String[] args) {
+        try {
+            launch(args);
+        }catch (Exception e){
+            System.out.println(e);
+            StageUtil.showExceptionDialog(e);
+
+        }
     }
 
 }

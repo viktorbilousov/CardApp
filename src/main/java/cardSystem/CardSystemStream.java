@@ -3,6 +3,7 @@ package cardSystem;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -20,8 +21,8 @@ public class CardSystemStream {
 
     public CardSystemStream(CardSystem system) {
         this.system = system;
-    }
 
+    }
 
     public boolean loadCardSystemFromFile(File file) {
         try {
@@ -94,67 +95,67 @@ public class CardSystemStream {
     private final short heightRowQuestion = 1500;
     private final int maxColumns = 3;
     private final int weightColumn = 7475;
+    private final short sizeThemeFontInPoints = 15;
+    private final short sizeQuestionFontInPoints = 11;
+    private final String questionSheetName = "Questions side"; //name of sheet
+    private final String answerSheetName = "Answers side"; //name of sheet
 
     public void saveCardsToXLSXFile(String XLSXFile, boolean writeAnswer, boolean writeTips) throws FileNotFoundException, IOException {
+        {
 
+            XSSFWorkbook wb = new XSSFWorkbook();
+            XSSFSheet questionSheet = wb.createSheet(questionSheetName);
+            XSSFSheet answserSheet = null;
 
-        final short sizeThemeFontInPoints = 15;
-        final short sizeQuestionFontInPoints = 11;
+            if (writeAnswer || writeTips) {
+                answserSheet = wb.createSheet(answerSheetName);
+            }
 
-        String questionSheetName = "Questions side"; //name of sheet
-        String answerSheetName = "Answers side"; //name of sheet
+            XSSFFont themeFont = wb.createFont();
+            XSSFFont questionFont = wb.createFont();
 
-        XSSFWorkbook wb = new XSSFWorkbook();
-        XSSFSheet questionSheet = wb.createSheet(questionSheetName);
-        XSSFSheet answserSheet = null;
+            themeFont.setBold(true);
+            themeFont.setFontHeightInPoints(sizeThemeFontInPoints);
+            questionFont.setFontHeightInPoints(sizeQuestionFontInPoints);
 
-        if(writeAnswer || writeTips) {
-            answserSheet = wb.createSheet(answerSheetName);
+            XSSFCellStyle themeStyle = wb.createCellStyle();
+            XSSFCellStyle questionStyle = wb.createCellStyle();
+
+            themeStyle.setAlignment(HorizontalAlignment.CENTER);
+            questionStyle.setAlignment(HorizontalAlignment.CENTER);
+
+            themeStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+            questionStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+
+            BorderStyle style = BorderStyle.DASH_DOT;
+            themeStyle.setBorderTop(style);
+            themeStyle.setBorderLeft(style);
+            themeStyle.setBorderRight(style);
+            themeStyle.setBorderBottom(BorderStyle.THIN);
+
+            themeStyle.setFont(themeFont);
+            themeStyle.setWrapText(true);
+
+            questionStyle.setBorderBottom(style);
+            questionStyle.setBorderLeft(style);
+            questionStyle.setBorderRight(style);
+            questionStyle.setFont(questionFont);
+            questionStyle.setWrapText(true);
+
+            writeQuestionsAndThemes(questionSheet, themeStyle, questionStyle);
+
+            if (writeAnswer && writeTips) writeAnswersAndTip(answserSheet, themeStyle, questionStyle);
+            else if (writeAnswer) writeAnswers(answserSheet, questionStyle);
+            else if (writeTips) writeTips(answserSheet, themeStyle);
+
+            FileOutputStream fileOut = new FileOutputStream(XLSXFile);
+            wb.write(fileOut);
+            fileOut.flush();
+            fileOut.close();
+            System.out.println("Your excel file has been generated!");
         }
-
-        XSSFFont themeFont = wb.createFont();
-        XSSFFont questionFont = wb.createFont();
-
-        themeFont.setBold(true);
-        themeFont.setFontHeightInPoints(sizeThemeFontInPoints);
-        questionFont.setFontHeightInPoints(sizeQuestionFontInPoints);
-
-        XSSFCellStyle themeStyle = wb.createCellStyle();
-        XSSFCellStyle questionStyle = wb.createCellStyle();
-
-        themeStyle.setAlignment(HorizontalAlignment.CENTER);
-        questionStyle.setAlignment(HorizontalAlignment.CENTER);
-
-        themeStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        questionStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-
-        BorderStyle style = BorderStyle.DASH_DOT;
-        themeStyle.setBorderTop(style);
-        themeStyle.setBorderLeft(style);
-        themeStyle.setBorderRight(style);
-        themeStyle.setBorderBottom(BorderStyle.THIN);
-        themeStyle.setFont(themeFont);
-        themeStyle.setWrapText(true);
-
-        questionStyle.setBorderBottom(style);
-        questionStyle.setBorderLeft(style);
-        questionStyle.setBorderRight(style);
-        questionStyle.setFont(questionFont);
-        questionStyle.setWrapText(true);
-
-        writeQuestionsAndThemes(questionSheet, themeStyle, questionStyle);
-
-        if(writeAnswer && writeTips)    writeAnswersAndTip(answserSheet, themeStyle, questionStyle);
-        else if(writeAnswer)            writeAnswers(answserSheet, questionStyle);
-        else if(writeTips)              writeTips(answserSheet, themeStyle);
-
-
-        FileOutputStream fileOut = new FileOutputStream(XLSXFile);
-        wb.write(fileOut);
-        fileOut.flush();
-        fileOut.close();
-        System.out.println("Your excel file has been generated!");
     }
+
 
     private void writeQuestionsAndThemes(XSSFSheet questionSheet, XSSFCellStyle themeStyle, XSSFCellStyle questionStyle ){
         int rowCnt = 0;
@@ -188,6 +189,7 @@ public class CardSystemStream {
             }
         }
     }
+
     private void writeAnswers(XSSFSheet answersSheet,  XSSFCellStyle answerStyle){
         int rowCnt = 0;
         int columsCnt = 0;
@@ -268,5 +270,8 @@ public class CardSystemStream {
             }
         }
     }
+
+
+
 
 }

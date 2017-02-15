@@ -48,12 +48,12 @@ public class StartPlayStageModel extends StageModel {
         playStageModel = new PlayStageModel(
                 StageUtil.makeNewStage("Play", getPrimaryStage()),
                 this,
-                MainApp.class.getResource("../fxml/play/Play.fxml")
+                MainApp.class.getResource("/fxml/play/Play.fxml")
         );
         playSettingModel = new PlaySettingStageModel(
                 StageUtil.makeNewStage("Play setting", getPrimaryStage()),
                 this,
-                MainApp.class.getResource("../fxml/play/PlaySetting.fxml")
+                MainApp.class.getResource("/fxml/play/PlaySetting.fxml")
         );
     }
 
