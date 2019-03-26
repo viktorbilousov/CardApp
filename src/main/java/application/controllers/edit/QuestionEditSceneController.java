@@ -29,7 +29,7 @@ public class QuestionEditSceneController implements Controller {
     @FXML
     private TableColumn<QuestionProperty, String> deleteColumn;
 
-    private ArrayList<Question> questionList;
+    private ArrayList<Question> questionList = new ArrayList<>();
     private QuestionsEditSceneModel myModel;
 
     public ArrayList<Question> getQuestionList() {

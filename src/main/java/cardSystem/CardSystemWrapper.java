@@ -2,10 +2,11 @@ package cardSystem;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 
 @XmlRootElement(name = "ThemesSystems")
-public class CardSystemWrapper {
+public class CardSystemWrapper implements Serializable {
     private CardSystem themesSystem;
 
     @XmlElement(name = "CardSystem")

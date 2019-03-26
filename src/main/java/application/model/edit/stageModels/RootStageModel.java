@@ -45,11 +45,14 @@ public class RootStageModel extends StageModel {
         systemStream = new CardSystemStream(system);
 
         init();
-        newSystem();
         File file = systemStream.getLastLoadFilePath();
 
       if(file != null) loadSystemFromFile(file);
-        else  newSystem();
+        else  {
+            newSystem();
+            system.loadDefPar();
+            updateData();
+      }
 
         getPrimaryStage().setOnCloseRequest(event -> {
             File openFile  = systemStream.getLastLoadFilePath();

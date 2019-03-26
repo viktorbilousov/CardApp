@@ -1,8 +1,13 @@
 package cardSystem;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "CardSystem")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CardSystem {
 
     private ArrayList<Theme> themeList = new ArrayList<Theme>();
@@ -26,8 +31,7 @@ public class CardSystem {
     }
     //endregion
 
-    public CardSystem() { }
-
+    public CardSystem() {}
 
     public void addTheme(Theme theme){
         if(themeList.contains(theme))

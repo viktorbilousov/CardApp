@@ -1,5 +1,13 @@
 package cardSystem;
 
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(name = "Question")
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class Question {
     private String question;
     private String answer = "";

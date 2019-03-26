@@ -17,7 +17,7 @@ import java.util.prefs.Preferences;
 public class CardSystemStream {
 
     private CardSystem system;
-    private boolean writeLastLoadFileToRegistr = true;
+    private boolean writeLastLoadFileToRegister = true;
 
     public CardSystemStream(CardSystem system) {
         this.system = system;
@@ -31,12 +31,12 @@ public class CardSystemStream {
             Unmarshaller um = context.createUnmarshaller();
 
             // Чтение XML из файла и демаршализация.
-            CardSystemWrapper wrapper = (CardSystemWrapper) um.unmarshal(file);
 
-            CardSystem loadSystem = wrapper.getThemesSystem();
+            CardSystem loadSystem = (CardSystem) um.unmarshal(file);
+
             system.setThemeList(loadSystem.getThemeList());
             system.setUniversalQuestion(loadSystem.getUniversalQuestion());
-            if (writeLastLoadFileToRegistr) setCardSystemFilePath(file);
+            if (writeLastLoadFileToRegister) setCardSystemFilePath(file);
             return true;
 
         } catch (Exception e) {
@@ -47,15 +47,12 @@ public class CardSystemStream {
 
     public boolean saveCardSystemToFile(File file) {
         try {
-            JAXBContext context = JAXBContext
-                    .newInstance(CardSystemWrapper.class);
+            JAXBContext context = JAXBContext.newInstance(CardSystem.class);
             Marshaller m = context.createMarshaller();
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            CardSystemWrapper wrapper = new CardSystemWrapper();
-            wrapper.setThemesSystem(system);
-            m.marshal(wrapper, file);
-            if (writeLastLoadFileToRegistr) setCardSystemFilePath(file);
+            m.marshal(system, file);
+
+            if (writeLastLoadFileToRegister) setCardSystemFilePath(file);
             return true;
         } catch (Exception e) { // catches ANY exception
             System.out.println(e);
