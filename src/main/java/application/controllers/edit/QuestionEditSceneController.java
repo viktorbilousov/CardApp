@@ -10,6 +10,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 
 public class QuestionEditSceneController implements Controller {
 
+    @FXML
+    private Label nameThemeLabel;
     @FXML
     private TableView<QuestionProperty> questionTableView;
     @FXML
@@ -42,6 +45,7 @@ public class QuestionEditSceneController implements Controller {
 
     @Override
     public void initialize() {
+
         questionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         answerColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         tipColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -93,6 +97,10 @@ public class QuestionEditSceneController implements Controller {
             questionProperties.add(new QuestionProperty(question));
         }
         questionTableView.setItems(questionProperties);
+    }
+
+    public void setThemeName(String name){
+        nameThemeLabel.setText(name);
     }
 
     @Override

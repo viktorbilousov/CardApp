@@ -22,6 +22,7 @@ public class QuestionsEditSceneModel extends SceneModel {
         super(rootLayout, parent, FXMLLocation);
     }
 
+    public void setThemesName (String name){myController.setThemeName(name);}
     public void setQuestionList(ArrayList<Question> questionList){
         myController.setQuestionList(questionList);
     }
