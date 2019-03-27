@@ -33,7 +33,7 @@ public class SceneModel implements Model {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(pathToFXML);
             thisLayout =  loader.load();
-            // Даём контроллеру доступ к главному прилодению.
+            // Give the controller access to the main application.
             controller = loader.getController();
             controller.setMyModel(this);
 
