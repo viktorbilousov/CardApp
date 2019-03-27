@@ -1,7 +1,7 @@
 # CardApp
 Application for preparing to the German exam(DAF level A2, Speaking). <p>
 The conditions of the test: a person issued a <b>card</b> with a topic and a question word. It is necessary to formulate a question on this topic and answer it.
-# What this App can do?
+# What can this App do?
 The application is divided into 2 parts: 
 * creating/editing cards with questions
 * training (game)
