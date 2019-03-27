@@ -5,19 +5,17 @@ import application.model.Model;
 import application.model.play.PlayStageModel;
 import cardSystem.Question;
 import cardSystem.Theme;
-import cardSystem.ThemesCardPlayer;
+import cardSystem.Play.CardPlay;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -57,7 +55,7 @@ public class PlayStageController implements Controller {
     }
 
     private PlayStageModel myModel;
-    private ThemesCardPlayer player;
+    private CardPlay player;
     private PlayState state = PlayState.NOT_INIT;
 
     private Iterator<Question> playerIterator;
@@ -76,7 +74,7 @@ public class PlayStageController implements Controller {
     private Integer timerTime = 0;
     private final int redColorTimer = 3;
 
-    public void setPlayer(ThemesCardPlayer player) {
+    public void setPlayer(CardPlay player) {
         this.player = player;
         playerIterator = player.iterator();
         updateElementsData();
@@ -240,7 +238,7 @@ public class PlayStageController implements Controller {
 
     private void changeStateToStop(){
         if(player != null) {
-            notAnswerQuestions = player.stopAndGetNotAnsteredThemesList();
+            notAnswerQuestions = player.stopAndGetNotAnsweredThemesList();
         }
         state = PlayState.STOP;
         setDisableAnswerBnts(true);
@@ -272,6 +270,8 @@ public class PlayStageController implements Controller {
         dontKnowAnswerBtn.setDisable(disable);
         knowAnswerBtn.setDisable(disable);
     }
+
+    //region buttons
 
     @FXML
     private void startAndStopButton() {
@@ -347,5 +347,6 @@ public class PlayStageController implements Controller {
         myModel.openStatistic(player.getInputThemesList(), player.getNotAnsweredThemesList());
         nextBtn.setDisable(true);
     }
+    //endregion
 }
 

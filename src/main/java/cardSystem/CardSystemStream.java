@@ -17,6 +17,7 @@ import java.util.prefs.Preferences;
 public class CardSystemStream {
 
     private CardSystem system;
+
     private boolean writeLastLoadFileToRegister = true;
 
     public CardSystemStream(CardSystem system) {
@@ -27,7 +28,7 @@ public class CardSystemStream {
     public boolean loadCardSystemFromFile(File file) {
         try {
             JAXBContext context = JAXBContext
-                    .newInstance(CardSystemWrapper.class);
+                    .newInstance(CardSystem.class);
             Unmarshaller um = context.createUnmarshaller();
 
             // Чтение XML из файла и демаршализация.
@@ -87,6 +88,8 @@ public class CardSystemStream {
             return null;
         }
     }
+
+    //region XML file output
 
     private final short heightRowThema = 1000;
     private final short heightRowQuestion = 1500;
@@ -152,7 +155,6 @@ public class CardSystemStream {
             System.out.println("Your excel file has been generated!");
         }
     }
-
 
     private void writeQuestionsAndThemes(XSSFSheet questionSheet, XSSFCellStyle themeStyle, XSSFCellStyle questionStyle ){
         int rowCnt = 0;
@@ -233,7 +235,6 @@ public class CardSystemStream {
         }
     }
 
-
     private void writeAnswersAndTip(XSSFSheet answersSheet, XSSFCellStyle tipStyle, XSSFCellStyle answerStyle){
         int rowCnt = 0;
         int columsCnt = 0;
@@ -268,7 +269,7 @@ public class CardSystemStream {
         }
     }
 
-
+   //endregion XML file output
 
 
 }

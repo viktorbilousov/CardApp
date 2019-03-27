@@ -6,7 +6,7 @@ import application.model.Model;
 import application.model.StageModel;
 import application.util.StageUtil;
 import cardSystem.Theme;
-import cardSystem.ThemesCardPlayer;
+import cardSystem.Play.CardPlay;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -45,7 +45,7 @@ public class PlayStageModel extends StageModel {
 
     public void setData(ArrayList<Theme> themesList, boolean needShuffle){
         isShuffle = needShuffle;
-        myController.setPlayer(new ThemesCardPlayer(themesList, needShuffle));
+        myController.setPlayer(new CardPlay(themesList, needShuffle));
     }
     public void enableTimer(int timerCountdown){
         myController.enableTimer(timerCountdown);
